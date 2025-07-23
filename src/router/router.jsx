@@ -3,6 +3,7 @@ import RootLayout from "../LayOut/RootLayout";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Authentication/Login/Login";
 import Register from "../Pages/Authentication/Register/Register";
+import LoadingSpner from "../Component/LoadingSpner";
 
 const router = createBrowserRouter([
     {
@@ -21,7 +22,9 @@ const router = createBrowserRouter([
     },
     {
         path:"/register",
-        Component:Register
+        Component:Register,
+        hydrateFallbackElement:<LoadingSpner/>,
+        loader:()=> fetch("../distric.json"),
     }
 
 ])

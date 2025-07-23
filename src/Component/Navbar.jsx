@@ -1,9 +1,16 @@
-import React from 'react';
 import { Link, NavLink } from 'react-router';
 import Button from './Button/Button';
 import ProFirstButton from './Button/ProFirstButton';
+import useAuth from '../hook/useAuth';
+import toast from 'react-hot-toast';
 
 const Navbar = () => {
+    const {user , logOut} = useAuth()
+    const handleLogout=()=>{
+        logOut()
+        toast.success("User log out!")
+    }
+    console.log(user)
     const link = 
     <>
     <li><NavLink to={"/"} >Home</NavLink></li>
@@ -44,12 +51,18 @@ const Navbar = () => {
                             <ProFirstButton></ProFirstButton>
                         </div>
                          <div className=' hidden md:flex gap-2'>
-                             <Link to={"/login"}>
-                               <Button label={"Sign In"} outline={true}></Button>
-                             </Link>
-                             <Link to={"/register"}>
-                               <Button label={"Sign Up"}></Button>
-                             </Link>
+                            {
+                                user ? <Button onClick={handleLogout} label={"Log Out"}></Button> : <>
+                                    <Link to={"/login"}>
+                                        <Button label={"Sign In"} outline={true}></Button>
+                                        </Link>
+                                        <Link to={"/register"}>
+                                        <Button label={"Sign Up"}></Button>
+                                    </Link>
+                                </>
+                                        
+                                  
+                            }
                              
                         </div>  
                     </div>
