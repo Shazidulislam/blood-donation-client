@@ -24,9 +24,9 @@ const Sidebar = () => {
   return (
     <>
       {/* Small Screen Navbar */}
-      <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
+      <div className='bg-white text-gray-800 flex justify-between md:hidden'>
         <div>
-          <div className='block cursor-pointer p-4 font-bold'>
+          <div className='block cursor-pointer px-4 py-1 font-bold'>
             <Link to='/'>
               <ProFirstButton></ProFirstButton>
             </Link>
@@ -49,27 +49,26 @@ const Sidebar = () => {
       >
         <div>
           <div>
-            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-lime-100 mx-auto'>
-              <Link to='/'>
-                <ProFirstButton></ProFirstButton>
-              </Link>
+            <div className='w-full hidden md:flex px-4 py-1  rounded justify-center items-center  mx-auto'>
+                <ProFirstButton color={true}></ProFirstButton>
             </div>
+            <div className="divider"></div>
           </div>
 
           {/* Nav Items */}
-          <div className='flex flex-col justify-between flex-1 mt-6'>
+          <div className='flex flex-col justify-between flex-1 mt-2'>
             <nav>
               {/*  Menu Items */}
             {
               role === "" && <DonnerMenu />
             }
-
+            {
+              role === "" &&  <AdminMenu />
+            }   
             {
               role === "" &&  <AgentMenu />
             }
-            {
-              role === "" &&  <AdminMenu />
-            }
+            
               
               
             </nav>
