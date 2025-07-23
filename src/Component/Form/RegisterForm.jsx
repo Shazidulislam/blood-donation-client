@@ -28,8 +28,8 @@ const RegisterForm = ({handleRegister , error}) => {
 
     return (
         <div>
-        <div className='md:py-10  color-theme'>
-          <div className="w-full max-w-xl p-4 rounded-md shadow sm:p-8 bg-gray-100 mx-auto text-gray-800">
+        <div className='md:py-5  color-theme'>
+          <div className="w-full  md:w-xl p-4 rounded-md shadow sm:p-8 bg-gray-100 mx-auto text-gray-800">
                 <h2 className="mb-3 text-3xl font-semibold text-center">Sign up to your account</h2>
                 <p className="text-sm text-center font-medium text-gray-600"> Already have an account?
                    <Link to={"/login"} className='text-blue-500 hover:underline'>SignIn</Link>
@@ -41,15 +41,15 @@ const RegisterForm = ({handleRegister , error}) => {
                     <hr  className="w-full text-gray-600" />
                 </div>
                 <form onSubmit={handleRegister} className="space-y-3">
-                        <fieldset className="fieldset w-xs lg:w-lg  font-medium">
+                        <fieldset className="fieldset w-xs md:w-lg  font-medium">
                             <label htmlFor="name" className="block text-sm">Name</label>
                             <input type="text" name="name"  placeholder="User Name" className="w-full p-3 rounded outline-none bg-white shadow text-gray-800" />
                        </fieldset>
-                        <fieldset className="fieldset w-xs lg:w-lg  font-medium">
+                        <fieldset className="fieldset w-xs md:w-lg  font-medium">
                             <label htmlFor="email" className="block text-sm">Email</label>
                             <input type="email" name="email"  placeholder="User Name" className="w-full p-3 rounded outline-none bg-white shadow text-gray-800" />
                        </fieldset>
-                        <fieldset className="fieldset w-xs  lg:w-lg  font-medium">
+                        <fieldset className="fieldset w-xs  md:w-lg  font-medium">
                             <label  className="block text-sm font-medium">Image</label>
                             <input type='file'
                              id='image'
@@ -57,7 +57,7 @@ const RegisterForm = ({handleRegister , error}) => {
                              accept='image/*'
                             className="w-full p-3 rounded outline-none bg-white shadow text-gray-800" />
                        </fieldset>
-                       <fieldset className="fieldset">
+                       <fieldset className="fieldset  w-xs md:w-lg">
                         <legend className="fieldset-legend">Blood group</legend>
                         <select name="blood_group" defaultValue={"Select A Group"} className="w-full p-3 rounded outline-none bg-white shadow text-gray-800">
                             <option disabled={true}>Select A Group</option>
@@ -72,7 +72,7 @@ const RegisterForm = ({handleRegister , error}) => {
                         </select>
                         </fieldset>
                         {/* selected district start */}
-                          <fieldset className="fieldset">
+                          <fieldset className="fieldset  w-xs md:w-lg">
                                 <legend className="fieldset-legend">Your District</legend>
                                 <select name="district"  onChange={(e) => setSelectedDistrictId(e.target.value)}
                                 defaultValue="Select Your Current District" className="w-full p-3 rounded outline-none bg-white shadow text-gray-800">
@@ -88,7 +88,7 @@ const RegisterForm = ({handleRegister , error}) => {
                           </fieldset>
                         {/* selected district end */}
                         {/* selected upazila start */}
-                          <fieldset className="fieldset">
+                          <fieldset className="fieldset  w-xs md:w-lg">
                                 <legend className="fieldset-legend">Your current Upazila</legend>
                                 <select name="upazila"
                                         className="w-full border border-gray-300 rounded px-3 py-2"
@@ -104,16 +104,16 @@ const RegisterForm = ({handleRegister , error}) => {
                           </fieldset>
                         {/* selected upazila end */}
                         {/* password */}
-                        <fieldset className="fieldset w-xs lg:w-lg  font-medium">
-                            <label htmlFor="email" className="block text-sm">Password</label>
+                        <fieldset className="fieldset w-xs md:w-lg  font-medium">
+                            <label  className="block text-sm">Password</label>
                             <input type="password" name="password"  placeholder="***********" className="w-full p-3 rounded outline-none bg-white shadow text-gray-800" />
                        </fieldset>
                        {/* Confirm Password */}
-                        <fieldset className="fieldset w-xs lg:w-lg  font-medium">
-                            <label htmlFor="email" className="block text-sm">Confirm Password</label>
+                        <fieldset className="fieldset w-xs md:w-lg  font-medium">
+                            <label className="block text-sm">Confirm Password</label>
                             <input type="password" name="Confirm_Password"  placeholder="***********" className="w-full p-3 rounded outline-none bg-white shadow text-gray-800" />
                        </fieldset>
-                        <fieldset className="fieldset w-xs lg:w-lg  ">
+                        <fieldset className="fieldset w-xs md:w-lg  ">
                           <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-[#03464D] cursor-pointer text-gray-100">Sign Up</button>
                        </fieldset>
                        {

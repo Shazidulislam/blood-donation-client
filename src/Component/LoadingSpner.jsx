@@ -1,10 +1,10 @@
 import React from 'react';
-import { CircleLoader } from 'react-spinners';
+import { BarLoader } from 'react-spinners';
 
 const LoadingSpner = () => {
     return (
-        <div className='flex justify-center items-center'>
-            <CircleLoader size={100} color='lime' />
+        <div className='flex justify-center items-center pt-32'>
+            <BarLoader size={100} color='lime' />
         </div>
     );
 };

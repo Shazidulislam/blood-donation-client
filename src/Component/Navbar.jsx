@@ -1,20 +1,22 @@
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import Button from './Button/Button';
 import ProFirstButton from './Button/ProFirstButton';
 import useAuth from '../hook/useAuth';
 import toast from 'react-hot-toast';
 
 const Navbar = () => {
+    const navigate = useNavigate()
     const {user , logOut} = useAuth()
     const handleLogout=()=>{
         logOut()
         toast.success("User log out!")
+        navigate("/login")
     }
     console.log(user)
     const link = 
     <>
     <li><NavLink to={"/"} >Home</NavLink></li>
-    <li><NavLink to="/ccdd">about</NavLink></li>
+    <li><NavLink to="/dashboard">Dashboard</NavLink></li>
     </>
     return (
                 <div className="navbar bg-base-100 shadow-sm rounded">

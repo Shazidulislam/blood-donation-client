@@ -9,14 +9,13 @@ import {
 } from 'firebase/auth'
 import { app } from '../firebase/firebase'
 import AuthContext from './AuthContext'
-
-
 const auth = getAuth(app)
 
 const AuthProvider = ({ children }) => {
+
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
-
+ console.log(user)
   const createUser = (email, password) => {
     setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
@@ -28,24 +27,11 @@ const AuthProvider = ({ children }) => {
   }
 
 
-
-  const logOut = async () => {
-    setLoading(true)
-    return signOut(auth)
-  }
-
-  const updateUserProfile = (name, photo) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL: photo,
-    })
-  }
-
-  // onAuthStateChange
+  // onAuthStateChange save user
   useEffect(() => {
     const unsubscribe =  onAuthStateChanged(auth,  currentUser => {
-      console.log('CurrentUser-->', currentUser?.email)
-      console.log('CurrentUser-->', currentUser)
+      console.log('email from authprovider', currentUser?.email)
+      console.log('user from authprovider', currentUser)
         setUser(currentUser)
         setLoading(false)
     })
@@ -53,6 +39,15 @@ const AuthProvider = ({ children }) => {
       return unsubscribe()
     }
   }, [])
+
+   const logOut = async () => {
+    setLoading(true)
+    return signOut(auth)
+  }
+
+   const updateUser=(updateData)=>{
+        updateProfile(auth.currentUser , updateData)
+    }
 
   const authInfo = {
     user,
@@ -62,7 +57,8 @@ const AuthProvider = ({ children }) => {
     createUser,
     signIn,
     logOut,
-    updateUserProfile,
+    updateUser
+    
   }
 
   return (
