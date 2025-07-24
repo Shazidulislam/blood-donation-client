@@ -7,9 +7,9 @@ import LoadingSpner from "../Component/LoadingSpner";
 import PriviteRoute from "../PriviteComponent/PriviteRoute";
 import DashboardLayout from "../LayOut/DashboardLayout";
 import UserProfile from "../Pages/DashBoardPage/Menu/UserProfile/UserProfile";
-import DonnerHome from "../Pages/DashBoardPage/DonnerPage/DonnerHome";
 import MydonationRequest from "../Pages/DashBoardPage/DonnerPage/MydonationRequest";
 import CreateDonationRequext from "../Pages/DashBoardPage/DonnerPage/CreateDonationRequext";
+import DashboardHome from "../Pages/DashBoardPage/DashboardHome/DashboardHome";
 
 const router = createBrowserRouter([
     {
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         children:[
             {
               index:true,
-              element:<PriviteRoute><DonnerHome></DonnerHome></PriviteRoute>
+              element:<PriviteRoute><DashboardHome></DashboardHome></PriviteRoute>
             },
             {
                 path:"/dashboard/my-donation",

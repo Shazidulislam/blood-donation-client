@@ -9,3 +9,10 @@ export const imageUpload = async imageData=>{
 
     return data?.data?.display_url
 }
+
+//save user in db
+export const createUserRecord=async (userData)=>{
+    const {data} = await axios.post(`${import.meta.env.VITE_SERVER_KEY}/user` , userData)
+    console.log(data)
+    return data
+}

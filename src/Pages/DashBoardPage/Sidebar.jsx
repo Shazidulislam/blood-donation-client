@@ -11,15 +11,20 @@ import AdminMenu from './Menu/AdminMenu/AdminMenu'
 import useAuth from '../../hook/useAuth'
 import ProFirstButton from '../../Component/Button/ProFirstButton'
 import MenueItem from '../../Component/Sheard/DashbordMenu/MenueItem'
+import { useRole } from '../../hook/useRole'
+import LoadingSpner from '../../Component/LoadingSpner'
 const Sidebar = () => {
   const { logOut } = useAuth()
   const [isActive, setActive] = useState(false)
+
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive)
   }
 
-  const role = ""
+  const[role , roleLoading]=useRole()
+//   console.log(role)
+ if(roleLoading)return <LoadingSpner/>
 
   return (
     <>
@@ -60,13 +65,13 @@ const Sidebar = () => {
             <nav>
               {/*  Menu Items */}
             {
-              role === "" && <DonnerMenu />
+              role === "donner" && <DonnerMenu />
             }
             {
-              role === "" &&  <AdminMenu />
+              role === "admin" &&  <AdminMenu />
             }   
             {
-              role === "" &&  <AgentMenu />
+              role === "volunteer" &&  <AgentMenu />
             }
             
               
@@ -88,7 +93,7 @@ const Sidebar = () => {
             className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
           >
             <GrLogout className='w-5 h-5' />
-            <span className='mx-4 font-medium'>Logout</span>
+            <span className='mx-4 font-medium text-[#33929D]'>Logout</span>
           </button>
         </div>
       </div>

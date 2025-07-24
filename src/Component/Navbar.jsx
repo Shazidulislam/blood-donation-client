@@ -12,7 +12,6 @@ const Navbar = () => {
         toast.success("User log out!")
         navigate("/login")
     }
-    console.log(user)
     const link = 
     <>
     <li><NavLink to={"/"} >Home</NavLink></li>

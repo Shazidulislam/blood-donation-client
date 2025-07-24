@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router';
 const RegisterForm = ({handleRegister , error}) => {
     const data = useLoaderData()
+
     const districtData = data[2].data
     const [upazilas ,setUpazilas ] = useState([])
     const [selectedDistrictId, setSelectedDistrictId] = useState("")
@@ -26,7 +27,8 @@ const RegisterForm = ({handleRegister , error}) => {
     }
   },[selectedDistrictId ,upazilas])
 
-    return (
+    return ( 
+      
         <div>
         <div className='md:py-5  color-theme'>
           <div className="w-full  md:w-xl p-4 rounded-md shadow sm:p-8 bg-gray-100 mx-auto text-gray-800">

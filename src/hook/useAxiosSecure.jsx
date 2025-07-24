@@ -4,7 +4,7 @@ import useAuth from './useAuth';
 import toast from 'react-hot-toast';
 
 const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_MARATHON_url
+    baseURL: import.meta.env.VITE_SERVER_KEY
 })
 
 const useAxiousSecure = () => {

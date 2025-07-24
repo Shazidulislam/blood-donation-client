@@ -23,7 +23,7 @@ const DonnerMenu = () => {
             {/* create new donation  */}
             <MenueItem
               address="/dashboard/create-donation-request"
-              label="Create Donation"
+              label="Be A Donner"
               icon={MdOutlineCreateNewFolder  }
               
             />

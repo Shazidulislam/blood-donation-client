@@ -6,7 +6,7 @@ import ProFirstButton from '../../../Component/Button/ProFirstButton';
 import useAuth from '../../../hook/useAuth';
 import { useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
-import { imageUpload } from '../../../api/utils';
+import { createUserRecord, imageUpload } from '../../../api/utils';
 import LoadingSpner from '../../../Component/LoadingSpner';
 
 const Register = () => {
@@ -28,8 +28,8 @@ const Register = () => {
   const blood_group = form.blood_group.value;
   const district = form.district.value;
   const upazila = form.upazila.value;
-  const role = "donner";
-  const status = "active";
+  
+
 
   setError("");
 
@@ -61,12 +61,12 @@ const Register = () => {
   try {
     //file to image use imgbb
     const imageURL = await imageUpload(image);
-    const submissionData = { name, email, blood_group, district, upazila, imageURL, role, status };
+    const submissionData = { name, email, blood_group, district, upazila, imageURL,  };
     console.log(submissionData);
 
     // Create user
     const result = await createUser(email, password);
-
+   
     if (result.user) {
       // Update profile
       await updateUser({ displayName:name,photoURL:imageURL })
@@ -76,6 +76,15 @@ const Register = () => {
         photoURL:imageURL
       })
 
+      const userData = {
+        name,
+        email,
+        photoURL:imageURL,
+        blood_group,
+        district_id:district,
+        upazila
+      }
+      await createUserRecord(userData)
       // Success alert and reset form
       Swal.fire({
         position: "top-end",

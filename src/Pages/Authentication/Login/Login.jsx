@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import LoadingSpner from '../../../Component/LoadingSpner';
+import { createUserRecord } from '../../../api/utils';
 const Login = () => {
 
   const { signIn,  loading, } = useAuth()
@@ -16,14 +17,15 @@ const Login = () => {
 
   if(loading) return <LoadingSpner/>
 
-    const handleSubmit =  e => {
+    const handleSubmit = async e => {
     e.preventDefault()
     const form = e.target
     const email = form.email.value
     const password = form.password.value
-        signIn(email , password)
-        .then((result)=>{
-            if(result.user){
+
+         try{
+           const result = await  signIn(email , password)
+           if(result.user){
             Swal.fire({
             position: "top-end",
             icon: "success",
@@ -31,20 +33,20 @@ const Login = () => {
             showConfirmButton: false,
             timer: 1500
             });
+            const userData={
+              name:result?.user?.displayName,
+              enail:result?.user?.email,
+              photoURL:result?.user?.photoURL
+            }
+            await createUserRecord(userData)
             e.target.reset()
             navigate(`${location.state ? location.state :"/"}`)
             }
-
-        })
-        .catch((error)=>{
-             toast.error(error)
-        })
-
-      
-      
-
-
-    
+          }
+          catch(err){
+                  console.log(err)
+                  toast.error(err)
+          }
   } 
 
     return (
