@@ -26,7 +26,7 @@ const DonationDitails = () => {
                <div className='divider'></div>
                <h2 className='text-xl md:text-2xl font-bold text_primary'>Request Information</h2>
                {/* donation info */}
-               <div className='md:flex md:justify-around pt-5 '>
+               <div className='md:flex md:justify-around pt-5 space-y-4'>
                 {/* left */}
                 <div className='space-y-4'>
                     <p className='space-x-2 flex flex-col '>
@@ -48,7 +48,7 @@ const DonationDitails = () => {
 
                 </div>
                 {/* right */}
-                <div  className='space-y-4'>
+                <div  className='space-y-4 '>
                     <p className='space-x-2 flex flex-col'>
                        <span  className='text-gray-500 text-lg'> Recipient Location :</span>
                         <span className='text-gray-900 '>{district} , {upazila}</span>
