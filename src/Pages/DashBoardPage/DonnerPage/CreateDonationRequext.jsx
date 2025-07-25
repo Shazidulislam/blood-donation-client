@@ -1,7 +1,34 @@
 import React from 'react';
 import DonationFrom from '../../../Component/Form/DonationRequestFrom/DonationFrom';
+import useAxiousSecure from '../../../hook/useAxiosSecure';
+import { useMutation } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const CreateDonationRequext = () => {
+    const axiosInstance = useAxiousSecure()
+      const {mutate} = useMutation({
+        mutationFn:async(bloodReuestData)=>{
+           const {data} = axiosInstance.post("/donation-request", bloodReuestData )
+           return data
+        }, 
+        onSuccess:(data)=>{
+            console.log(data)
+            toast.success("Your request done!")
+        },
+        onError:(err)=>{
+            console.log(err)
+        }
+    })
+    //handle donation
+    const handleDonationSubmit=(e)=>{
+       e.preventDefault()
+       const form = e.target;
+       const formData = new FormData(form)
+       const bloodReuestData = Object.fromEntries(formData.entries())
+       bloodReuestData.donation_status = "pending"
+       console.log(bloodReuestData)
+        mutate(bloodReuestData) 
+    }
     return (
         <div className='px-4 py-4 md:py-8 min-h-screen bg-gray-50'>
             <div className='bg-white px-4 py-8 rounded-lg shadow-lg transition scale-3d duration-150'>
@@ -10,7 +37,7 @@ const CreateDonationRequext = () => {
                 <div className='divider py-10'></div>
                 <div>
                     <h2 className='text-xl font-bold text_primary'>Speak Hope, Save a Soul Today</h2>
-                    <DonationFrom></DonationFrom>
+                    <DonationFrom handleDonationSubmit={handleDonationSubmit}></DonationFrom>
                 </div>
             </div>
            

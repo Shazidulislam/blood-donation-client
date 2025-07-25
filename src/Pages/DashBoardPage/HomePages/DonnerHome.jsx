@@ -6,8 +6,13 @@ import { useRole } from '../../../hook/useRole';
 
 const DonnerHome = () => {
     const {user , loading} = useAuth()
-     const [role ,roleLoading ]= useRole()
-    if(loading||roleLoading) return <LoadingSpner/> 
+     const [role , ]= useRole()
+    if(loading) return <LoadingSpner/> 
+
+
+
+
+
     return (
         <div>
             {/* welcome user */}
@@ -22,6 +27,7 @@ const DonnerHome = () => {
                    {
                     role === "donner" && <Donationtable></Donationtable>
                    }
+                   {/* <Donationtable></Donationtable> */}
                  </div>
             </div>
         </div>

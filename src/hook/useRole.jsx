@@ -1,12 +1,14 @@
 import { useQuery } from "@tanstack/react-query"
 import useAuth from "./useAuth"
 import useAxiousSecure from "./useAxiosSecure"
+import LoadingSpner from "../Component/LoadingSpner"
 
 export const useRole=  ()=>{
-
-       const {user , loading} = useAuth()
-       const axiosInstance = useAxiousSecure()  
-       const {data:role , isLoading:roleLoading} = useQuery({
+       const {user , loading } = useAuth()
+        const axiosInstance = useAxiousSecure()  
+       
+      
+       const {data , isLoading:roleLoading} = useQuery({
         queryKey:["role", user?.email ],
         enabled:!loading && !!user?.email,
         queryFn:async()=>{
@@ -14,8 +16,10 @@ export const useRole=  ()=>{
             return data
         }
        })
+        // if(loading) return <LoadingSpner/>
+    //    problem
+    //    console.log(data ,roleLoading  )
+       return [data?.role , data?.status, roleLoading ]
 
-
-       console.log(role ,roleLoading )
-       return [role?.role , roleLoading]
+ 
 }
