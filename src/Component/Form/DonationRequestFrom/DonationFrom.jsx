@@ -49,19 +49,19 @@ const DonationFrom = ({handleDonationSubmit}) => {
             <form onSubmit={handleDonationSubmit} >
                 <div className='grid grid-cols-1 lg:grid-cols-2 space-x-3 pt-5 justify-center items-center'>
                     <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
-                            <label htmlFor="name" className="block text-sm">Requester Name</label>
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Requester Name</label>
                             <input type="text" value={user?.displayName} name="requester_name"  placeholder="User Name" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800" />
                     </fieldset>
                     <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
-                            <label htmlFor="name" className="block text-sm">Requester Email</label>
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Requester Email</label>
                             <input type="email" value={user?.email} name="requester_email"  placeholder="User Name" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800" />
                     </fieldset>
                     <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
-                            <label htmlFor="name" className="block text-sm">Recipient Name</label>
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Recipient Name</label>
                             <input type="text"  name="recipient_name"  placeholder="Recipient Name" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800" />
                     </fieldset>
                     <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
-                            <label htmlFor="name" className="block text-sm">Recipient District</label>
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Recipient District</label>
                              <select name="district"  onChange={(e) => setSelectedDistrictId(e.target.value)}
                                 defaultValue="Select Your Current District" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800">
                                     <option disabled={true}>Select Your Current District</option>
@@ -76,7 +76,7 @@ const DonationFrom = ({handleDonationSubmit}) => {
                     </fieldset>
                     {/* selected upazila start */}
                           <fieldset className="fieldset w-xs pr-2   pt-2  lg:w-lg">
-                               <label htmlFor="name" className="block text-sm">Recipient Upazila</label>
+                               <label htmlFor="name" className="block text-gray-400 text-sm">Recipient Upazila</label>
                                 <select name="upazila"
                                         required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800"
                                         disabled={!selectedDistrictId}
@@ -93,15 +93,15 @@ const DonationFrom = ({handleDonationSubmit}) => {
                   {/* selected upazila end */}
                   {/* hospital name */}
                      <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
-                            <label htmlFor="name" className="block text-sm">Hospital Name</label>
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Hospital Name</label>
                             <input type="text"  name="hospital_name"  placeholder="Hospital Name" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800" />
                     </fieldset>     
                      <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
-                            <label htmlFor="name" className="block text-sm">Full Address Line</label>
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Full Address Line</label>
                             <input type="text"  name="address"  placeholder=": ...Zahir Raihan Rd, Dhaka" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800" />
                     </fieldset>     
                     <fieldset className="fieldset  pt-2 w-xs pr-2   lg:w-lg  font-medium">
-                            <label htmlFor="name" className="block text-sm">Blood Group </label>
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Blood Group </label>
                            <select name="blood_group" defaultValue={"Select A Group"} required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800">
                             <option disabled={true}>Select A Group</option>
                             <option value={"A+"}>A+</option>
@@ -115,7 +115,7 @@ const DonationFrom = ({handleDonationSubmit}) => {
                         </select>
                     </fieldset>    
                     <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
-                            <label htmlFor="name" className="block text-sm">Donation Date</label>
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Donation Date</label>
                             <DatePicker 
                             selected={startDate}
                              onChange={(date) => setStartDate(date)} 
@@ -123,7 +123,7 @@ const DonationFrom = ({handleDonationSubmit}) => {
                              />;
                     </fieldset>    
                     <fieldset className="fieldset w-xs pr-2  lg:w-lg  font-medium">
-                            <label htmlFor="name" className="block text-sm">Donation Time</label>
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Donation Time</label>
                             <DatePicker
                                     name='donation_time'
                                     selected={time}
@@ -138,7 +138,7 @@ const DonationFrom = ({handleDonationSubmit}) => {
                     </fieldset>    
                 </div>
                  <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-full  font-medium">
-                            <label htmlFor="name" className="block text-sm">Requester message</label>
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Requester message</label>
                             <input type="text"  name="requester_message"  placeholder="Hospital Name" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800" />
                 </fieldset>
                  <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-full  font-medium">

@@ -33,7 +33,7 @@ const Sidebar = () => {
         <div>
           <div className='block cursor-pointer px-4 py-1 font-bold'>
             <Link to='/'>
-              {/* <ProFirstButton></ProFirstButton> */}
+              <ProFirstButton></ProFirstButton>
             </Link>
           </div>
         </div>
@@ -55,7 +55,7 @@ const Sidebar = () => {
         <div>
           <div>
             <div className='w-full hidden md:flex px-4 py-1  rounded justify-center items-center  mx-auto'>
-                {/* <ProFirstButton color={true}></ProFirstButton> */}
+                <ProFirstButton color={true}></ProFirstButton>
             </div>
             <div className="divider"></div>
           </div>

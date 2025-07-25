@@ -10,6 +10,8 @@ import UserProfile from "../Pages/DashBoardPage/Menu/UserProfile/UserProfile";
 import MydonationRequest from "../Pages/DashBoardPage/DonnerPage/MydonationRequest";
 import CreateDonationRequext from "../Pages/DashBoardPage/DonnerPage/CreateDonationRequext";
 import DashboardHome from "../Pages/DashBoardPage/DashboardHome/DashboardHome";
+import UpdateDonation from "../Pages/DashBoardPage/UpdateDonation/UpdateDonation";
+import DonationDitails from "../Pages/DashBoardPage/DonationDitails/DonationDitails";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +54,14 @@ const router = createBrowserRouter([
                 path:"/dashboard/profile",
                 element:<PriviteRoute><UserProfile></UserProfile></PriviteRoute>
 
+            },
+            {
+                path:"/dashboard/edit-donation/:id",
+                element:<PriviteRoute><UpdateDonation></UpdateDonation></PriviteRoute>
+            },
+            {
+                path:"/dashboard/diatils/:id",
+                element:<PriviteRoute><DonationDitails></DonationDitails></PriviteRoute>
             }
         ]
     }
