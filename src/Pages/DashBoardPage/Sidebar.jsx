@@ -35,7 +35,7 @@ const Sidebar = () => {
         <div>
           <div className='block cursor-pointer px-4 py-1 font-bold'>
             <Link to='/'>
-              <ProFirstButton></ProFirstButton>
+              <ProFirstButton color={true}></ProFirstButton>
             </Link>
           </div>
         </div>
@@ -58,7 +58,7 @@ const Sidebar = () => {
           <div>
             <div className='w-full hidden md:flex px-4 py-1  rounded justify-center items-center  mx-auto'>
                <Link to={"/"}>
-                    <ProFirstButton ></ProFirstButton>
+                    <ProFirstButton color={true}></ProFirstButton>
                 </Link>
             </div>
             <div className="divider"></div>

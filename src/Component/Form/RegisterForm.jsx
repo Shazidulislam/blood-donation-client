@@ -1,31 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router';
+import React, {   } from 'react';
+import { Link } from 'react-router';
+import useAuth from '../../hook/useAuth';
+import { TbFidgetSpinner } from 'react-icons/tb';
 const RegisterForm = ({handleRegister , error}) => {
-    const data = useLoaderData()
+    const {upazilas , districtData , loading} = useAuth()
 
-    const districtData = data[2].data
-    const [upazilas ,setUpazilas ] = useState([])
-    const [selectedDistrictId, setSelectedDistrictId] = useState("")
-    const [filteredUpazilas, setFilteredUpazilas] = useState([]);
-    // fetch upazila data
-    useEffect(()=>{
-      fetch("../Upazilas.json")
-      .then(res=>res.json())
-      .then(datas=>{
-        setUpazilas(datas[2].data)
-      })
-    },[])
-
-
-  useEffect(()=>{
-    if(selectedDistrictId){
-         const filtered  = upazilas.filter((upazila)=> upazila?.district_id ===selectedDistrictId )
-         setFilteredUpazilas(filtered)
-    }
-    else{
-        setFilteredUpazilas([]);
-    }
-  },[selectedDistrictId ,upazilas])
 
     return ( 
       
@@ -76,12 +55,12 @@ const RegisterForm = ({handleRegister , error}) => {
                         {/* selected district start */}
                           <fieldset className="fieldset  w-xs md:w-lg">
                                 <legend className="fieldset-legend">Your District</legend>
-                                <select name="district"  onChange={(e) => setSelectedDistrictId(e.target.value)}
+                                <select name="district" 
                                 defaultValue="Select Your Current District" className="w-full p-3 rounded outline-none bg-white shadow text-gray-800">
                                     <option disabled={true}>Select Your Current District</option>
                                     {
                                         districtData.map((district)=>(
-                                            <option key={district?.id} value={district?.id}>
+                                            <option key={district?.id} value={district?.name}>
                                                 {district?.name}
                                             </option>
                                         ))
@@ -94,10 +73,10 @@ const RegisterForm = ({handleRegister , error}) => {
                                 <legend className="fieldset-legend">Your current Upazila</legend>
                                 <select name="upazila"
                                         className="w-full border border-gray-300 rounded px-3 py-2"
-                                        disabled={!selectedDistrictId}
+                                       
                                         >
                                         <option value="">Select an upazila</option>
-                                        {filteredUpazilas.map((upazila) => (
+                                        {upazilas.map((upazila) => (
                                             <option key={upazila.id} value={upazila.name}>
                                             {upazila.name}
                                             </option>
@@ -116,7 +95,9 @@ const RegisterForm = ({handleRegister , error}) => {
                             <input type="password" name="Confirm_Password"  placeholder="***********" className="w-full p-3 rounded outline-none bg-white shadow text-gray-800" />
                        </fieldset>
                         <fieldset className="fieldset w-xs md:w-lg  ">
-                          <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-[#03464D] cursor-pointer text-gray-100">Sign Up</button>
+                          <button type="submit" className="w-full px-8 py-3 font-semibold rounded-md bg-[#03464D] cursor-pointer text-gray-100">
+                            {loading?(<TbFidgetSpinner className='animate-spin m-auto'/>):("Continue")}
+                          </button>
                        </fieldset>
                        {
                         error && <p className='text-error'>{error}</p>

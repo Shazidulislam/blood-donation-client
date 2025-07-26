@@ -12,6 +12,9 @@ import CreateDonationRequext from "../Pages/DashBoardPage/DonnerPage/CreateDonat
 import DashboardHome from "../Pages/DashBoardPage/DashboardHome/DashboardHome";
 import UpdateDonation from "../Pages/DashBoardPage/UpdateDonation/UpdateDonation";
 import DonationDitails from "../Pages/DashBoardPage/DonationDitails/DonationDitails";
+import Alluser from "../Pages/DashBoardPage/AdminPage/Alluser";
+import AllBloodDonationRequest from "../Pages/DashBoardPage/AdminPage/AllBloodDonationRequest ";
+import ContentManagement from "../Pages/DashBoardPage/AdminPage/ContentManagement";
 
 const router = createBrowserRouter([
     {
@@ -62,6 +65,20 @@ const router = createBrowserRouter([
             {
                 path:"/dashboard/diatils/:id",
                 element:<PriviteRoute><DonationDitails></DonationDitails></PriviteRoute>
+            },
+            // admin
+            {
+                path:"/dashboard/all-donner-info",
+                loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-total-user`),
+                element:<PriviteRoute><Alluser></Alluser></PriviteRoute>
+            },
+            {
+                path:"/dashboard/all-blood-donation-request",
+                element:<PriviteRoute><AllBloodDonationRequest></AllBloodDonationRequest></PriviteRoute>
+            },
+            {
+                path:"/dashboard/content-management",
+                element:<PriviteRoute><ContentManagement></ContentManagement></PriviteRoute>
             }
         ]
     }

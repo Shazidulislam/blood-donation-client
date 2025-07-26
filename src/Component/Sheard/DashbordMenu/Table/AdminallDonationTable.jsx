@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
-import useAuth from '../../../hook/useAuth';
-import useAxiousSecure from '../../../hook/useAxiosSecure';
-import useUpdateDonationStatus from '../../../api/useUpdateDonationStatus';
 import { useQuery } from '@tanstack/react-query';
-import LoadingSpner from '../../../Component/LoadingSpner';
 import { Link } from 'react-router';
+import useAuth from '../../../../hook/useAuth';
+import useAxiousSecure from '../../../../hook/useAxiosSecure';
+import useUpdateDonationStatus from '../../../../api/useUpdateDonationStatus';
+import LoadingSpner from '../../../LoadingSpner';
 
-const AllDonationtable = () => {
+const AdminallDonationTable = () => {
          const {user , loading} = useAuth()
      const  axiosInstance= useAxiousSecure()
      const {mutate} = useUpdateDonationStatus() 
      const [searchText , setSearchText] = useState("")
      // get data 
     const {data ,isLoading }=useQuery({
-        queryKey:["allDonation" ,user?.email ],
+        queryKey:["adminallDonation" ,user?.email ],
         queryFn:async()=>{
-            const {data} = await axiosInstance(`/donner-all-donation/${user?.email}`)
+            const {data} = await axiosInstance(`/admin-all-donation/${user?.email}`)
             return data
         }
     })
@@ -130,4 +130,5 @@ const AllDonationtable = () => {
     );
 };
 
-export default AllDonationtable;
+export default AdminallDonationTable;
+
