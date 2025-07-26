@@ -10,11 +10,13 @@ const useUpdateDonationStatus = () => {
 
     mutationFn: async ({id , status}) => {
       const { data } = await axiosInstance.patch(`/donation-status/update/${id}` , {status});
+      console.log(data)
       return data;
     },
     onSuccess:()=>{
-      toast.success("Donation Done")
-       QueryClient.invalidateQueries({ queryKey: ['recentDonation'] })
+         toast.success(`Donation status update`)
+         QueryClient.invalidateQueries({ queryKey: ['recentDonation' ] })
+         QueryClient.invalidateQueries({ queryKey: ['allDonation' ] })
     },
     onError:(error)=>{
       console.log(error.message)

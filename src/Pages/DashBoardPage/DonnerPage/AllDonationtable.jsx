@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../../hook/useAuth';
 import useAxiousSecure from '../../../hook/useAxiosSecure';
 import useUpdateDonationStatus from '../../../api/useUpdateDonationStatus';
@@ -10,6 +10,7 @@ const AllDonationtable = () => {
          const {user , loading} = useAuth()
      const  axiosInstance= useAxiousSecure()
      const {mutate} = useUpdateDonationStatus() 
+     const [searchText , setSearchText] = useState("")
      // get data 
     const {data ,isLoading }=useQuery({
         queryKey:["allDonation" ,user?.email ],
@@ -18,9 +19,18 @@ const AllDonationtable = () => {
             return data
         }
     })
+    const filterDonations = data?.filter(donation=>donation.donation_status.toLowerCase().includes(searchText))
     if(loading|| isLoading) return <LoadingSpner/> 
-    return (
-  <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
+    return ( 
+        <div>
+            <div className='flex justify-end'>
+                <input type="text"  name="" 
+                value={searchText}
+                onChange={e=>setSearchText(e.target.value.toLowerCase())}
+                className='px-3 py-2 outline-none border-b-2 border-gray-800  rounded-l-md'
+                 placeholder='search by status' id="" />
+            </div>
+            <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
             <div className="overflow-x-auto">
                 <table className="w-full p-6 text-xs text-left whitespace-nowrap">
                     <colgroup>
@@ -51,7 +61,7 @@ const AllDonationtable = () => {
 
                     
                    {
-                    data.map((donation)=> <tbody key={donation?._id} className="border-b border-b-gray-400 dark:bg-gray-50 dark:border-gray-300">
+                    filterDonations?.map((donation)=> <tbody key={donation?._id} className="border-b border-b-gray-400 dark:bg-gray-50 dark:border-gray-300">
                         <tr>
                             <td className="px-3 py-2">{donation?.recipient_name}</td>
                             <td className="px-3 py-2">
@@ -115,6 +125,7 @@ const AllDonationtable = () => {
                    
                 </table>
             </div>
+        </div>
         </div>
     );
 };

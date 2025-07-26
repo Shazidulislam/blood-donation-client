@@ -15,6 +15,8 @@ const AuthProvider = ({ children }) => {
 
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [ districtData,setDistrictData] = useState([])
+  const [upazilas , setUpazilas] = useState([])
  console.log(user)
   const createUser = (email, password) => {
     setLoading(true)
@@ -49,6 +51,31 @@ const AuthProvider = ({ children }) => {
         updateProfile(auth.currentUser , updateData)
     }
 
+useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const districtRes = await fetch("/distric.json");
+        const districtJson = await districtRes.json();
+
+
+        const upazilaRes = await fetch("/Upazilas.json");
+        console.log(districtRes , upazilaRes)
+
+        const upazilaJson = await upazilaRes.json();
+       console.log(districtJson , upazilaJson)
+
+        setDistrictData(districtJson[2].data);
+        setUpazilas(upazilaJson[2].data);
+      } catch (error) {
+        console.error("Error fetching JSON:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const authInfo = {
     user,
     setUser,
@@ -57,7 +84,9 @@ const AuthProvider = ({ children }) => {
     createUser,
     signIn,
     logOut,
-    updateUser
+    updateUser,
+    districtData,
+    upazilas,
     
   }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import useAuth from '../../../hook/useAuth';
 import LoadingSpner from '../../LoadingSpner';
 import "react-datepicker/dist/react-datepicker.css";
@@ -6,43 +6,43 @@ import DatePicker from 'react-datepicker';
 import { useRole } from '../../../hook/useRole';
 
 const DonationFrom = ({handleDonationSubmit}) => {
-    const [districtData , setDistrictData] = useState([])
-    const [upazilas ,setUpazilas ] = useState([])
-    const [selectedDistrictId, setSelectedDistrictId] = useState("")
-    const [filteredUpazilas, setFilteredUpazilas] = useState([]);
+    // const [districtData , setDistrictData] = useState([])
+    // const [upazilas ,setUpazilas ] = useState([])
+    // const [selectedDistrictId, setSelectedDistrictId] = useState("")
+    // const [filteredUpazilas, setFilteredUpazilas] = useState([]);
     const [startDate, setStartDate] = useState(new Date());
-    const {user , loading} = useAuth()
-    const [myLoading , setMyLoading ]= useState(true)
+    const {user , loading , districtData ,upazilas } = useAuth()
+    // const [myLoading , setMyLoading ]= useState(true)
     const [time, setTime] = useState(null);
     const [status  ] = useRole()
     
 
-       useEffect(()=>{
-            // refetch()
-            fetch("../distric.json")
-            .then(res=>res.json())
-            .then(data=>{
-                setDistrictData(data[2].data) 
-                setMyLoading(false)
-            })
+    //    useEffect(()=>{
+    //         // refetch()
+    //         fetch("../distric.json")
+    //         .then(res=>res.json())
+    //         .then(data=>{
+    //             setDistrictData(data[2].data) 
+    //             setMyLoading(false)
+    //         })
 
-            fetch("../Upazilas.json")
-            .then(res=>res.json())
-            .then(datas=>{
-              setUpazilas(datas[2].data)
-              setMyLoading(false)
-            })
+    //         fetch("../Upazilas.json")
+    //         .then(res=>res.json())
+    //         .then(datas=>{
+    //           setUpazilas(datas[2].data)
+    //           setMyLoading(false)
+    //         })
 
-              if(selectedDistrictId){
-                const filtered  = upazilas.filter((upazila)=> upazila?.district_id ===selectedDistrictId )
-                setFilteredUpazilas(filtered)
-                }
-                else{
-                    setFilteredUpazilas([]);
-                }
-        },[selectedDistrictId , upazilas])
+    //         //   if(selectedDistrictId){
+    //         //     const filtered  = upazilas.filter((upazila)=> upazila?.district_id ===selectedDistrictId )
+    //         //     setFilteredUpazilas(filtered)
+    //         //     }
+    //         //     else{
+    //         //         setFilteredUpazilas([]);
+    //         //     }
+    //     },[selectedDistrictId , upazilas])
           
-    if(loading ||myLoading) return <LoadingSpner/>
+    if(loading ) return <LoadingSpner/>
     
     return (
         <div>
@@ -57,17 +57,18 @@ const DonationFrom = ({handleDonationSubmit}) => {
                             <input type="email" value={user?.email} name="requester_email"  placeholder="User Name" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800" />
                     </fieldset>
                     <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
-                            <label htmlFor="name" className="block text-gray-400 text-sm">Recipient Name</label>
+                            < label htmlFor="name" className="block text-gray-400 text-sm">Recipient Name</label>
                             <input type="text"  name="recipient_name"  placeholder="Recipient Name" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800" />
                     </fieldset>
                     <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
                             <label htmlFor="name" className="block text-gray-400 text-sm">Recipient District</label>
-                             <select name="district"  onChange={(e) => setSelectedDistrictId(e.target.value)}
+                             <select name="district" 
+                            //   onChange={(e) => setSelectedDistrictId(e.target.value)}
                                 defaultValue="Select Your Current District" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800">
                                     <option disabled={true}>Select Your Current District</option>
                                     {
                                         districtData.map((district)=>(
-                                            <option key={district?.id} value={district?.id}>
+                                            <option key={district?.id} value={district?.name }>
                                                 {district?.name}
                                             </option>
                                         ))
@@ -79,10 +80,9 @@ const DonationFrom = ({handleDonationSubmit}) => {
                                <label htmlFor="name" className="block text-gray-400 text-sm">Recipient Upazila</label>
                                 <select name="upazila"
                                         required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800"
-                                        disabled={!selectedDistrictId}
                                         >
                                         <option value="">Select an upazila</option>
-                                        {filteredUpazilas.map((upazila) => (
+                                        {upazilas.map((upazila) => (
                                             <option key={upazila.id} value={upazila.name}>
                                             {upazila.name}
                                             </option>
