@@ -37,7 +37,9 @@ const Navbar = () => {
                         </ul>
                         </div>
                          <div className='hidden md:flex'>
-                            <ProFirstButton ></ProFirstButton>
+                            <Link to={"/"}>
+                              <ProFirstButton ></ProFirstButton>
+                            </Link>
                         </div>
                        
                     </div>
@@ -49,7 +51,9 @@ const Navbar = () => {
                     </div>
                     <div className="navbar-end space-x-3 ">
                          <div className='md:hidden'>
-                            <ProFirstButton></ProFirstButton>
+                             <Link to={"/"}>
+                              <ProFirstButton ></ProFirstButton>
+                            </Link>
                         </div>
                          <div className=' hidden md:flex gap-2'>
                             {

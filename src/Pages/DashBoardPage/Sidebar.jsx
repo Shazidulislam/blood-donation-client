@@ -16,15 +16,17 @@ import LoadingSpner from '../../Component/LoadingSpner'
 const Sidebar = () => {
   const { logOut } = useAuth()
   const [isActive, setActive] = useState(false)
-
+  const {user , loading} = useAuth()
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive)
   }
 
-  const[role , ]=useRole()
-//   console.log(role)
-//  if(roleLoading)return <LoadingSpner/>
+  const[role ,roleLoading ]=useRole()
+  console.log(roleLoading)
+// //   console.log(role)
+ if(!user || loading)return <LoadingSpner/>
+//  if(!user || loading ||roleLoading)return <LoadingSpner/>
 
   return (
     <>
@@ -55,7 +57,9 @@ const Sidebar = () => {
         <div>
           <div>
             <div className='w-full hidden md:flex px-4 py-1  rounded justify-center items-center  mx-auto'>
-                <ProFirstButton color={true}></ProFirstButton>
+               <Link to={"/"}>
+                    <ProFirstButton ></ProFirstButton>
+                </Link>
             </div>
             <div className="divider"></div>
           </div>

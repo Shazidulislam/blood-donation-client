@@ -35,7 +35,14 @@ const AuthProvider = ({ children }) => {
       console.log('email from authprovider', currentUser?.email)
       console.log('user from authprovider', currentUser)
         setUser(currentUser)
-        setLoading(false)
+        if(currentUser){
+         setLoading(false)
+        }
+        else{
+          setUser(null)
+          setLoading(false)
+        }
+        
     })
     return () => {
       return unsubscribe()
@@ -69,7 +76,7 @@ useEffect(() => {
       } catch (error) {
         console.error("Error fetching JSON:", error);
       } finally {
-        setLoading(false);
+        // setLoading(false);
       }
     };
 

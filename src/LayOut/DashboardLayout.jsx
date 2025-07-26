@@ -1,8 +1,12 @@
 import React from 'react';
 import Sidebar from '../Pages/DashBoardPage/Sidebar';
 import { Outlet } from 'react-router';
+import useAuth from '../hook/useAuth';
+import LoadingSpner from '../Component/LoadingSpner';
 
 const DashboardLayout = () => {
+  const {user , loading} = useAuth()
+  if(!user || loading) return <LoadingSpner/>
     return (
         <div className=''>
             <div className=' bg-white relative md:flex min-h-screen'>

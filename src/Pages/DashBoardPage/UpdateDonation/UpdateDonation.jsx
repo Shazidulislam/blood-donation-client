@@ -16,19 +16,21 @@ const UpdateDonation = () => {
     // const [selectedDistrictId, setSelectedDistrictId] = useState("")
     // const [filteredUpazilas, setFilteredUpazilas] = useState([]);
     const [startDate, setStartDate] = useState(new Date());
-    const {  loading , districtData , upazilas} = useAuth()
+    const { user, loading , districtData , upazilas} = useAuth()
     const [time, setTime] = useState(null);
-    const [status  ] = useRole()
+    const [status   ] = useRole()
     const axiosInstance = useAxiousSecure()
     const queryClient = useQueryClient()
           //update donation data
-          const {mutate} = useMutation({
+          const {mutate  } = useMutation({
               mutationFn:async(bloodReuestData)=>{
-                 const {data} = axiosInstance.post("/donation-update", bloodReuestData )
+                 const {data} =await axiosInstance.put(`/donation-update/${id}`, bloodReuestData )
+                 console.log("inside data", data)
                  return data
               }, 
               onSuccess:(data)=>{
                   console.log(data)
+                  console.log("outside data" , data)
                     toast.success("Your request Update successfully!")
                     queryClient.invalidateQueries({ queryKey: ['findDonation'] })
               },
@@ -47,8 +49,7 @@ const UpdateDonation = () => {
                 return data
              }
         })
-
-          console.log(data)
+        if(!user|| loading ||isLoading) return <LoadingSpner/>
       const handleDonationUpdate=(e)=>{
        e.preventDefault()
        const form = e.target;
@@ -78,7 +79,7 @@ const UpdateDonation = () => {
           
     //     },[selectedDistrictId , upazilas])
           
-    if(loading ||isLoading) return <LoadingSpner/>
+  
 
 //     {
 //     "_id": "688345c9be970e0a8233c240",
@@ -101,6 +102,9 @@ const UpdateDonation = () => {
     const {requester_name , requester_email ,recipient_name , district , upazila , hospital_name ,address ,blood_group , donation_date , donation_time ,requester_message ,   } = data ||{}
     return (
         <div className='px-4 py-10'>
+            <div>
+                <h2 className=' text-2xl md:text-4xl lg:text-5xl font-bold  text-[#33929D]'>Modify Donation Info</h2>
+            </div>
             <form onSubmit={handleDonationUpdate} >
                 <div className='grid grid-cols-1 lg:grid-cols-2 space-x-3 pt-5 justify-center items-center'>
                     <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
@@ -201,7 +205,7 @@ const UpdateDonation = () => {
                             <input type="text" defaultValue={requester_message} name="requester_message"  placeholder="Hospital Name" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#045760] outline-none bg-white text-gray-800" />
                 </fieldset>
                  <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-full  font-medium">
-                  <button type='submit' className={`py-3 bg_primary text-center rounded-lg text-white lg:text-lg cursor-pointer  ${status==="active"?"cursor-pointer":"disabled:hover:cursor-not-allowed"}`} >Submit</button>
+                  <button type='submit' className={`py-3 bg_primary text-center rounded-lg text-white lg:text-lg cursor-pointer  ${status==="active"?"cursor-pointer":"disabled:hover:cursor-not-allowed"}`} >Update Request</button>
                 </fieldset>
             </form>
         </div>

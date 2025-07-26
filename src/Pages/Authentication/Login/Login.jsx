@@ -4,7 +4,7 @@ import animationData from '../../../assets/animation/login.json'
 import Lottie from 'lottie-react';
 import LoginForm from '../../../Component/Form/LoginForm';
 import useAuth from '../../../hook/useAuth';
-import { useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import toast from 'react-hot-toast';
 import LoadingSpner from '../../../Component/LoadingSpner';
@@ -56,7 +56,9 @@ const Login = () => {
                 {/* login form */}
                 <div className='flex-1 md:flex md:justify-start md:items-start '>
                  <div className=''>
-                    <ProFirstButton></ProFirstButton>
+                     <Link to={"/"}>
+                              <ProFirstButton ></ProFirstButton>
+                      </Link>
                  </div>
                  {/* form */}
                   <div className='pt-20 lg:pl-20'>

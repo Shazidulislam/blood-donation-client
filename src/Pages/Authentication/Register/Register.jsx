@@ -4,7 +4,7 @@ import Lottie from 'lottie-react';
 import RegisterForm from '../../../Component/Form/RegisterForm';
 import ProFirstButton from '../../../Component/Button/ProFirstButton';
 import useAuth from '../../../hook/useAuth';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import { createUserRecord, imageUpload } from '../../../api/utils';
 import LoadingSpner from '../../../Component/LoadingSpner';
@@ -110,7 +110,9 @@ const Register = () => {
                 {/* login form */}
                 <div className='flex-2 lg:flex lg:flex-col md:justify-center md:items-center '>
                  <div className=''>
-                    <ProFirstButton></ProFirstButton>
+                    <Link to={"/"}>
+                              <ProFirstButton ></ProFirstButton>
+                      </Link>
                  </div>
                  {/* form */}
                   <div className='lg:pt-20'>
