@@ -18,9 +18,14 @@ const AdminContentManagement = () => {
 
 
     const {data , } = useQuery({
-        queryKey:["blogCard"],
+        queryKey:["blogCard" ,currentPage, itemsPerPage ],
         queryFn:async()=>{
-            const {data} = await axiosInstance("/all-blog-data-find")
+            const {data} = await axiosInstance("/all-blog-data-find" , {
+                params: {
+                page: currentPage,
+                size: itemsPerPage,
+                },
+            })
             return data
         }
     })
@@ -46,8 +51,9 @@ const AdminContentManagement = () => {
                     </div>
                      <p className='text-lg font-medium text-gray-400 pt-3'>Organize and control your digital storytelling</p>
                      <div className='divider'></div>
-
-                     <div>
+                    <div>
+                    </div>  
+                     <div className='grid grid-cols-2 gap-6'>
                         {
                             data?.map((blog)=> <BlogCard key={blog?._id} blog={blog} ></BlogCard>)
                         }

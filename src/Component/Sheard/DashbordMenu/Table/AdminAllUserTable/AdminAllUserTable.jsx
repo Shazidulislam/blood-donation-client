@@ -170,23 +170,24 @@ const {mutate:updateRole} = useMutation({
                           Unblock
                         </button>
                       )}
-                      {user?.role === 'donner' && (
+                      {user?.role === 'donner'|| user?.role === 'admin' ? (
                         <button onClick={()=>updateRole({
                           id:user?._id,
                           role:"volunteer"
                         })} className="px-3 py-1 cursor-pointer bg-blue-100 rounded text-blue-600">
                           Make Volunteer
                         </button>
-                      )}
+                      ) :""}
+
                       {(user?.role === 'donner' ||
-                        user?.role === 'volunteer') && (
+                        user?.role === 'volunteer') ? (
                         <button onClick={()=>updateRole({
                           id:user?._id,
                           role:"admin"
                         })} className="px-3 py-1 cursor-pointer bg-purple-100 rounded text-purple-600">
                           Make Admin
                         </button>
-                      )}
+                      ):""}
                     </div>
                   )}
                 </td>
