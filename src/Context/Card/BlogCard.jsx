@@ -15,8 +15,12 @@ const BlogCard = ({blog}) => {
             return data
         },
         onSuccess:(data)=>{
-             if(data){
+            console.log(data)
+             if(data?.modifiedCount){
                 toast.success("Status update Successfully!")
+             }
+             else if(data?.deletedCount){
+                toast.success("Blog delete  Successfully!")
              }
              queryClient.invalidateQueries({ queryKey: ['blogCard'] })
 

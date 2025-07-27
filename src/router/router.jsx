@@ -16,6 +16,7 @@ import Alluser from "../Pages/DashBoardPage/AdminPage/Alluser";
 import AllBloodDonationRequest from "../Pages/DashBoardPage/AdminPage/AllBloodDonationRequest ";
 import AddBlog from "../Pages/DashBoardPage/AdminPage/AddBlog";
 import AdminContentManagement from "../Pages/DashBoardPage/AdminPage/AdminContentManagement";
+import AdminPriviteRoute from "../PriviteComponent/AdminPriviteRoute";
 
 const router = createBrowserRouter([
     {
@@ -43,6 +44,8 @@ const router = createBrowserRouter([
         children:[
             {
               index:true,
+              hydrateFallbackElement:<LoadingSpner></LoadingSpner>,
+              loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-total-user`),
               element:<PriviteRoute><DashboardHome></DashboardHome></PriviteRoute>
             },
             {
@@ -71,24 +74,26 @@ const router = createBrowserRouter([
                 path:"/dashboard/all-donner-info",
                 hydrateFallbackElement:<LoadingSpner></LoadingSpner>,
                 loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-total-user`),
-                element:<PriviteRoute><Alluser></Alluser></PriviteRoute>
+                element:<AdminPriviteRoute><PriviteRoute><Alluser></Alluser></PriviteRoute></AdminPriviteRoute>
             },
             {
                 path:"/dashboard/all-blood-donation-request",
                 hydrateFallbackElement:<LoadingSpner/>,
                 loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-all-donation`),
-                element:<PriviteRoute><AllBloodDonationRequest></AllBloodDonationRequest></PriviteRoute>
+                element:<AdminPriviteRoute><PriviteRoute><AllBloodDonationRequest></AllBloodDonationRequest></PriviteRoute></AdminPriviteRoute>
             },
             {
                 path:"/dashboard/content-management",
                 hydrateFallbackElement:<LoadingSpner/>,
                  loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-all-blog`),
-                element:<PriviteRoute><AdminContentManagement></AdminContentManagement></PriviteRoute>
+                element:<AdminPriviteRoute><PriviteRoute><AdminContentManagement></AdminContentManagement></PriviteRoute></AdminPriviteRoute>
             },
             {
                 path:"/dashboard/content-management/add-blog",
-                element:<PriviteRoute><AddBlog></AddBlog></PriviteRoute>
+                element:<AdminPriviteRoute><PriviteRoute><AddBlog></AddBlog></PriviteRoute></AdminPriviteRoute>
             }
+            //volantir
+            
         ]
     }
 

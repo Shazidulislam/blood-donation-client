@@ -3,6 +3,7 @@ import { Link, useLoaderData } from 'react-router';
 import BlogCard from '../../../Context/Card/BlogCard';
 import { useQuery } from '@tanstack/react-query';
 import useAxiousSecure from '../../../hook/useAxiosSecure';
+import LoadingSpner from '../../../Component/LoadingSpner';
 
 const AdminContentManagement = () => {
     const {count} = useLoaderData()
@@ -13,11 +14,12 @@ const AdminContentManagement = () => {
     // page
     const [currentPage , setCurrentPage] = useState(0)
      const numberofPage = Math.ceil(count/itemsPerPage)
+     const [searchText, setSearchText] = useState('');
     const pages = [...Array(numberofPage).keys()]
     console.log("numberof page",numberofPage ,"page", pages , )
 
 
-    const {data , } = useQuery({
+    const {data ,isLoading } = useQuery({
         queryKey:["blogCard" ,currentPage, itemsPerPage ],
         queryFn:async()=>{
             const {data} = await axiosInstance("/all-blog-data-find" , {
@@ -41,6 +43,11 @@ const AdminContentManagement = () => {
              setCurrentPage(currentPage+1)
         }
     }
+
+    if(isLoading) return <LoadingSpner/>
+      const filterBlog = data?.filter(blog =>
+    blog?.blog_status?.toLowerCase().includes(searchText)
+  );
     return (
         <div className='px-4 py-6 bg-gray-50'>
              <div className='bg-white px-4 py-10 rounded-lg shadow-lg'>
@@ -53,9 +60,21 @@ const AdminContentManagement = () => {
                      <div className='divider'></div>
                     <div>
                     </div>  
+                         <div className="flex justify-end mb-4">
+                                <select
+                                className="px-6 py-3 bg-gray-50 border border-gray-300 rounded"
+                                value={searchText}
+                                onChange={e => setSearchText(e.target?.value?.toLowerCase())}
+                                >
+                                <option value="">All Blog</option>
+                                <option value="draft">Draft</option>
+                                <option value="published">Publish</option>
+                                </select>
+                            </div>
                      <div className='grid grid-cols-2 gap-6'>
+
                         {
-                            data?.map((blog)=> <BlogCard key={blog?._id} blog={blog} ></BlogCard>)
+                            filterBlog?.map((blog)=> <BlogCard key={blog?._id} blog={blog} ></BlogCard>)
                         }
                      </div>
 

@@ -9,6 +9,7 @@ import {
 } from 'firebase/auth'
 import { app } from '../firebase/firebase'
 import AuthContext from './AuthContext'
+import axios from 'axios'
 const auth = getAuth(app)
 
 const AuthProvider = ({ children }) => {
@@ -17,6 +18,7 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [ districtData,setDistrictData] = useState([])
   const [upazilas , setUpazilas] = useState([])
+  const [donation , setDonation] = useState(null)
  console.log(user)
   const createUser = (email, password) => {
     setLoading(true)
@@ -63,14 +65,12 @@ useEffect(() => {
       try {
         const districtRes = await fetch("/distric.json");
         const districtJson = await districtRes.json();
-
-
+        const {data} = await axios(`${import.meta.env.VITE_SERVER_KEY}/count-all-donation`)
+        console.log("donation data from " , data.count)
         const upazilaRes = await fetch("/Upazilas.json");
-        console.log(districtRes , upazilaRes)
 
         const upazilaJson = await upazilaRes.json();
-       console.log(districtJson , upazilaJson)
-
+        setDonation(data.count)
         setDistrictData(districtJson[2].data);
         setUpazilas(upazilaJson[2].data);
       } catch (error) {
@@ -94,6 +94,7 @@ useEffect(() => {
     updateUser,
     districtData,
     upazilas,
+    donation
     
   }
 

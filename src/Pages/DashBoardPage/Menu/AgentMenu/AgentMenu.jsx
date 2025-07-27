@@ -1,9 +1,15 @@
 import React from 'react';
+import { IoHomeOutline } from 'react-icons/io5';
+import MenueItem from '../../../../Component/Sheard/DashbordMenu/MenueItem';
 
 const AgentMenu = () => {
     return (
         <div>
-            <h2>From agent menu</h2>
+            <MenueItem
+              address="/dashboard"
+              label="Home"
+              icon={IoHomeOutline}
+            />
         </div>
     );
 };

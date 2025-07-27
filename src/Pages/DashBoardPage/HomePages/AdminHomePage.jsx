@@ -5,9 +5,11 @@ import { useRole } from '../../../hook/useRole';
 import {  FaUserTie } from 'react-icons/fa';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { MdBloodtype } from 'react-icons/md';
+import { useLoaderData } from 'react-router';
 
 const AdminHomePage = () => {
-    const {user , loading} = useAuth()
+   const {count} = useLoaderData()
+    const {user ,donation , loading} = useAuth()
     const [role , ] = useRole()
     console.log(role)
     if(loading) return <LoadingSpner/>
@@ -26,7 +28,7 @@ const AdminHomePage = () => {
                                <span className='text-blue-500 bg-blue-100 p-4 rounded-full'>
                                  <FaUserTie size={36}/>
                                </span>
-                                <p>5000</p>
+                                <p>{count}</p>
                                 <h2 className='text-xl text-gray-500  '>Total User</h2>
                                 <p className='text-xs text-gray-500'>Updated: July 2025</p>
                             </div>
@@ -44,7 +46,7 @@ const AdminHomePage = () => {
                                <span className='text-red-500 bg-red-100 p-4 rounded-full'>
                                  <MdBloodtype  size={36}/>
                                </span>
-                                <p>200</p>
+                                <p>{donation}</p>
                                 <h2 className='text-xl text-gray-500  '> Blood Requests</h2>
                                 <p className='text-xs text-gray-500'>Updated: July 2025</p>
                             </div>
