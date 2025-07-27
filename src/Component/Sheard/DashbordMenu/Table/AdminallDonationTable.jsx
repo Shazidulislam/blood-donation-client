@@ -1,26 +1,29 @@
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router';
-import useAuth from '../../../../hook/useAuth';
 import useAxiousSecure from '../../../../hook/useAxiosSecure';
 import useUpdateDonationStatus from '../../../../api/useUpdateDonationStatus';
 import LoadingSpner from '../../../LoadingSpner';
 
-const AdminallDonationTable = () => {
-         const {user , loading} = useAuth()
+const AdminallDonationTable = ({size , page}) => {
      const  axiosInstance= useAxiousSecure()
      const {mutate} = useUpdateDonationStatus() 
      const [searchText , setSearchText] = useState("")
      // get data 
     const {data ,isLoading }=useQuery({
-        queryKey:["adminallDonation" ,user?.email ],
+        queryKey:["adminallDonation" ,size , page ],
         queryFn:async()=>{
-            const {data} = await axiosInstance(`/admin-all-donation/${user?.email}`)
+            const {data} = await axiosInstance(`/admin-all-donation`, {
+                 params: {
+                page,
+                size,
+                },
+            })
             return data
         }
     })
     const filterDonations = data?.filter(donation=>donation.donation_status.toLowerCase().includes(searchText))
-    if(loading|| isLoading) return <LoadingSpner/> 
+    if( isLoading) return <LoadingSpner/> 
     return ( 
         <div>
             <div className='flex justify-end'>

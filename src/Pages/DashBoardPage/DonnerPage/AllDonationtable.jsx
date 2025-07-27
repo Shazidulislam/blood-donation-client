@@ -19,14 +19,14 @@ const AllDonationtable = () => {
             return data
         }
     })
-    const filterDonations = data?.filter(donation=>donation.donation_status.toLowerCase().includes(searchText))
+    const filterDonations = data?.filter(donation=>donation?.donation_status?.toLowerCase()?.includes(searchText))
     if(loading|| isLoading) return <LoadingSpner/> 
     return ( 
         <div>
             <div className='flex justify-end'>
                 <input type="text"  name="" 
                 value={searchText}
-                onChange={e=>setSearchText(e.target.value.toLowerCase())}
+                onChange={e=>setSearchText(e.target?.value?.toLowerCase())}
                 className='px-3 py-2 outline-none border-b-2 border-gray-800  rounded-l-md'
                  placeholder='search by status' id="" />
             </div>

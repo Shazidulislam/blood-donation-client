@@ -34,8 +34,7 @@ const router = createBrowserRouter([
     {
         path:"/register",
         Component:Register,
-        hydrateFallbackElement:<LoadingSpner/>,
-        loader:()=> fetch("../distric.json"),
+       
     },
     {
         path:"/dashboard",
@@ -69,11 +68,14 @@ const router = createBrowserRouter([
             // admin
             {
                 path:"/dashboard/all-donner-info",
+                hydrateFallbackElement:<LoadingSpner></LoadingSpner>,
                 loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-total-user`),
                 element:<PriviteRoute><Alluser></Alluser></PriviteRoute>
             },
             {
                 path:"/dashboard/all-blood-donation-request",
+                hydrateFallbackElement:<LoadingSpner/>,
+                loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-all-donation`),
                 element:<PriviteRoute><AllBloodDonationRequest></AllBloodDonationRequest></PriviteRoute>
             },
             {
