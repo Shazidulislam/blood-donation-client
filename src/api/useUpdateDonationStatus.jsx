@@ -17,6 +17,7 @@ const useUpdateDonationStatus = () => {
          toast.success(`Donation status update`)
          QueryClient.invalidateQueries({ queryKey: ['recentDonation' ] })
          QueryClient.invalidateQueries({ queryKey: ['allDonation' ] })
+         QueryClient.invalidateQueries({ queryKey: ['adminallDonation' ] })
     },
     onError:(error)=>{
       console.log(error.message)
