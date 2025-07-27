@@ -14,7 +14,8 @@ import UpdateDonation from "../Pages/DashBoardPage/UpdateDonation/UpdateDonation
 import DonationDitails from "../Pages/DashBoardPage/DonationDitails/DonationDitails";
 import Alluser from "../Pages/DashBoardPage/AdminPage/Alluser";
 import AllBloodDonationRequest from "../Pages/DashBoardPage/AdminPage/AllBloodDonationRequest ";
-import ContentManagement from "../Pages/DashBoardPage/AdminPage/ContentManagement";
+import AddBlog from "../Pages/DashBoardPage/AdminPage/AddBlog";
+import AdminContentManagement from "../Pages/DashBoardPage/AdminPage/AdminContentManagement";
 
 const router = createBrowserRouter([
     {
@@ -80,7 +81,13 @@ const router = createBrowserRouter([
             },
             {
                 path:"/dashboard/content-management",
-                element:<PriviteRoute><ContentManagement></ContentManagement></PriviteRoute>
+                hydrateFallbackElement:<LoadingSpner/>,
+                 loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-all-blog`),
+                element:<PriviteRoute><AdminContentManagement></AdminContentManagement></PriviteRoute>
+            },
+            {
+                path:"/dashboard/content-management/add-blog",
+                element:<PriviteRoute><AddBlog></AddBlog></PriviteRoute>
             }
         ]
     }

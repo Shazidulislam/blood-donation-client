@@ -29,7 +29,8 @@ const Donationtable = () => {
     if(loading|| isLoading) return <LoadingSpner/> 
     return (
         <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
-            <div className="overflow-x-auto">
+            {
+                data?.length === 0 ? "":<> <div className="overflow-x-auto">
                 <table className="w-full p-6 text-xs text-left whitespace-nowrap">
                     <colgroup>
                         <col className="w-5" />
@@ -59,7 +60,7 @@ const Donationtable = () => {
 
                     
                    {
-                    data.map((donation)=> <tbody key={donation?._id} className="border-b border-b-gray-400 dark:bg-gray-50 dark:border-gray-300">
+                    data?.length=== 0 ?"": data.map((donation)=> <tbody key={donation?._id} className="border-b border-b-gray-400 dark:bg-gray-50 dark:border-gray-300">
                         <tr>
                             <td className="px-3 py-2">{donation?.recipient_name}</td>
                             <td className="px-3 py-2">
@@ -122,7 +123,8 @@ const Donationtable = () => {
                    }
                    
                 </table>
-            </div>
+            </div></>
+            }
         </div>
     );
 };

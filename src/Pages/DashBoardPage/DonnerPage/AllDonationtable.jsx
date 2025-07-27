@@ -23,6 +23,9 @@ const AllDonationtable = () => {
     if(loading|| isLoading) return <LoadingSpner/> 
     return ( 
         <div>
+            {
+                data?.length === 0 ? "":<>
+                <div>
             <div className='flex justify-end'>
                 <input type="text"  name="" 
                 value={searchText}
@@ -126,6 +129,8 @@ const AllDonationtable = () => {
                 </table>
             </div>
         </div>
+        </div></>
+            }
         </div>
     );
 };
