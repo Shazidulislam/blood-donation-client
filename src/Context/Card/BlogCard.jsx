@@ -4,6 +4,7 @@ import useAxiousSecure from '../../hook/useAxiosSecure';
 import toast from 'react-hot-toast';
 import LoadingSpner from '../../Component/LoadingSpner';
 import { useRole } from '../../hook/useRole';
+import { Link } from 'react-router';
 
 const BlogCard = ({blog}) => {
     const  axiosInstance = useAxiousSecure()
@@ -49,8 +50,8 @@ const BlogCard = ({blog}) => {
                     <p className='px-4 py-1 text-lime-600 bg-lime-100 rounded-full'>{blog_status}</p>
                 </div>
              </div>
-             <p className='text-sm text-gray-600'>{blog_content}</p>
-             <div className='flex justify-end gap-2 pt-4'>
+             <p className='text-sm text-gray-600 pt-3'>{blog_content}</p>
+             <div className='flex justify-end flex-1 gap-2 pt-4'>
                 {
                     blog_status === "draft" && role==="admin" ?  <button onClick={()=>mutate({
                         id:_id,
@@ -64,13 +65,18 @@ const BlogCard = ({blog}) => {
                     })} className='px-4 py-2 bg-lime-500 rounded text-white cursor-pointer'>UnPublish</button>:""
                 }
                  {/* //to do edit button */}
-                 <button  className='px-4 py-2 bg-lime-500 rounded text-white cursor-pointer'>Edit</button>
+                {
+                    role === "admin" || role==="volunteer" ? <button  className='px-4 py-2 bg-lime-500 rounded text-white cursor-pointer'>Edit</button>:""
+                }
                 {
                     role==="admin" ? <button onClick={()=>mutate({
                         id:_id,
                         status:"delete"
                     })}
                   className="px-4 py-2 bg-red-500 rounded text-white cursor-pointer" >Delete</button>:""
+                }
+                {
+                    role==="donner" ? <Link to={`/blog-deatils/${_id}`} className='px-6 py-2 rounded-xs bg-[#D25D5D] text-white'  >Deatils</Link>:""
                 }
              </div>
            </div>

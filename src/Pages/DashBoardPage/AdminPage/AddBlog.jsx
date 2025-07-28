@@ -45,7 +45,8 @@ console.log(clenText)
             blog_content:clenText,
             blog_status:"draft",
             create_at:new Date().toISOString() ,
-            create_by:user?.email
+            create_by:user?.email,
+            created_name:user?.displayName,
         }
         mutate({submisionData,})
        console.log(submisionData)  

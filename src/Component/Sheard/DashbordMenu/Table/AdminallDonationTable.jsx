@@ -91,9 +91,9 @@ const AdminallDonationTable = ({size , page}) => {
                             </td>
                             <td className="px-3 py-2">
                                {
-                                donation?.donation_status === "" ?<>
-                                <p className="dark:text-gray-600">{donation?.requester_name}</p>
-                                <p className="dark:text-gray-600">{donation?.requester_email}</p>
+                                donation?.donation_status === "inprogress" ?<>
+                                <p className="dark:text-gray-600">{donation?.donner_name}</p>
+                                <p className="dark:text-gray-600">{donation?.donner_email}</p>
                                 </>: <p className="dark:text-gray-600">"N/A"</p>
                                  
                                }
@@ -108,12 +108,7 @@ const AdminallDonationTable = ({size , page}) => {
                                      })} className='px-3 py-1 cursor-pointer bg-[#D25D5D] rounded-full text-white' > Done</button>
                                     }
                                     {/* cancled the status */}
-                                    {
-                                     donation?.donation_status==="pending"&& role==="volunteer"? <button onClick= {()=>mutate({
-                                        id:donation._id , 
-                                        status:"inprogress"
-                                     })} className='px-3 py-1 cursor-pointer bg-[#D25D5D] rounded-full text-white'>Inprogress</button>:""
-                                    }
+                                 
                                     {
                                      donation?.donation_status==="inprogress"&& <button onClick= {()=>mutate({
                                         id:donation._id , 

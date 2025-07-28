@@ -18,6 +18,7 @@ const Navbar = () => {
     <li><NavLink to="/dashboard">Dashboard</NavLink></li>
     <li><NavLink to="/search">Search</NavLink></li>
     <li><NavLink to="/all-blood-donation-request">Donation</NavLink></li>
+    <li><NavLink to="/published-blog">Blog</NavLink></li>
     </>
     return (
                 <div className="navbar bg-[#D25D5D40] shadow-sm rounded">

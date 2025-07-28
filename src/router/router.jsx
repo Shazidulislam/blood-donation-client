@@ -19,6 +19,8 @@ import AdminContentManagement from "../Pages/DashBoardPage/AdminPage/AdminConten
 import AdminPriviteRoute from "../PriviteComponent/AdminPriviteRoute";
 import SearchPage from "../Pages/SerchPage/SearchPage";
 import BloodDonationRequest from "../Pages/BloodDonationRequestPage/BloodDonationRequest";
+import Blog from "../Pages/Blog/Blog";
+import BlogDeatils from "../Pages/BlogDeatils/BlogDeatils";
 
 const router = createBrowserRouter([
     {
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
             {
                 path:"/all-blood-donation-request",
                 element:<BloodDonationRequest></BloodDonationRequest>
+            },
+            {
+                path:"/published-blog",
+                element:<Blog></Blog>
+            },
+            {
+                path:"/blog-deatils/:id",
+                element:<PriviteRoute><BlogDeatils></BlogDeatils></PriviteRoute>
             }
         ]
     },

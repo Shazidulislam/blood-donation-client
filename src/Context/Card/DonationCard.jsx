@@ -14,8 +14,10 @@ const DonationCard = ({donation}) => {
              <p><span  className='font-semibold text-gray-600'>District :</span><span className='text-gray-400'  >{district} </span></p>
              <p><span  className='font-semibold text-gray-600' >Date :</span><span className='text-gray-400'  >{donation_date}</span></p>
              <p><span  className='font-semibold text-gray-600' >Time:</span><span className='text-gray-400'  >{donation_time}</span></p>
+             
+             <p><span  className='font-semibold text-gray-600' >Donation Status : </span><span className='text-gray-400' >{donation_status}</span></p>
+
             </div>
-             <p>{donation_status}</p>
              <div className='flex justify-end '>
                 <Link  to={`/dashboard/diatils/${_id}`}><button className='text-white rounded-xs bg-[#D25D5D] cursor-pointer px-6 py-2' >View</button></Link>
              </div>

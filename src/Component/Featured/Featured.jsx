@@ -19,7 +19,7 @@ const Featured = () => {
                     <p className='flex justify-start font-medium  text-gray-600 items-center gap-2'><span className='text-[#D25D5D]'><MdOutlineCheck/></span> <span>Hygine Tools</span> </p>
                     <p className='flex justify-start font-medium  text-gray-600 items-center gap-2'><span className='text-[#D25D5D]'><MdOutlineCheck/></span>  <span>Health Check</span> </p>
                     <p className='flex justify-start font-medium  text-gray-600 items-center gap-2'><span className='text-[#D25D5D]'><MdOutlineCheck/></span> <span>24h Service</span> </p>
-                    <p className='flex justify-start font-medium  text-gray-600 items-center gap-2'><span className='text-[#D25D5D]'><MdOutlineCheck/></span>  <span>Health Check</span> </p>
+                    <p className='flex justify-start font-medium  text-gray-600 items-center gap-2'><span className='text-[#D25D5D]'><MdOutlineCheck/></span>  <span>Blood Bank</span> </p>
                 </div>
                 <div className='pt-10'>
                     <button className='px-12 transition-colors cursor-pointer rounded duration-300  py-5 shadow-2xl shadow-[#B9375D50] bg-[#D25D5D] hover:bg-[#B9375D] text-white'>About Us</button>
