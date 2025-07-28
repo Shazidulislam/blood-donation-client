@@ -43,7 +43,7 @@ const Alluser = () => {
             <div className='bg-white px-4 py-10 rounded-lg shadow-lg'>
                {/* table data */}
                     <div>
-                       <h2 className='text_primary text-2xl md:text-4xl lg:text-5xl font-bold'>All Users </ h2>
+                       <h2 className='text-[#D25D5D] text-2xl md:text-4xl lg:text-5xl font-bold'>All Users </ h2>
                         <p className='text-lg font-medium text-gray-400 pt-3'>Easily monitor and manage user roles, access, and activity in one place</p>
                         <div className='divider'></div>
                         <div>

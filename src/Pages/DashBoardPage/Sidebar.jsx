@@ -22,11 +22,11 @@ const Sidebar = () => {
     setActive(!isActive)
   }
 
-  const[role ,roleLoading ]=useRole()
+  const[role ,status,roleLoading ]=useRole()
   console.log(roleLoading)
 // //   console.log(role)
- if(!user || loading)return <LoadingSpner/>
-//  if(!user || loading ||roleLoading)return <LoadingSpner/>
+//  if(!user || loading)return <LoadingSpner/>
+ if(!user || loading ||roleLoading)return <LoadingSpner/>
 
   return (
     <>
@@ -97,7 +97,7 @@ const Sidebar = () => {
             className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'
           >
             <GrLogout className='w-5 h-5' />
-            <span className='mx-4 font-medium text-[#33929D]'>Logout</span>
+            <span className='mx-4 font-medium text-[#D25D5D]'>Logout</span>
           </button>
         </div>
       </div>

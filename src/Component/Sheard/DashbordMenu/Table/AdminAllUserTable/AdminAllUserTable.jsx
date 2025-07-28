@@ -44,20 +44,6 @@ const {mutate:updateRole} = useMutation({
   }
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   const filterUser = data?.filter(user =>
     user.status?.toLowerCase().includes(searchText)
   );

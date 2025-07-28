@@ -9,7 +9,7 @@ const AdminPriviteRoute = ({ children }) => {
   const location = useLocation()
 
   if (loading ) return <LoadingSpner />
-  if (role === "admin") return children
+  if (role === "admin" || role ==="volunteer" ) return children
   return <Navigate to='/' state={{ from: location }} replace='true' />
 }
 

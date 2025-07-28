@@ -8,7 +8,7 @@ import banner4 from "../../assets/banner/banner7.jpg"
 import banner5 from "../../assets/banner/banner8.jpg"
 const Banner = () => {
     return (
-           <div className='pt-2'>
+           <div className='pt-t'>
              <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} interval={2000}	>
                 <div>
                     <img src={banner1} />

@@ -12,6 +12,7 @@ import LoadingSpner from '../../../Component/LoadingSpner';
 const Register = () => {
   const [error , setError] = useState("")
   const navigate = useNavigate()
+  const [selectDistrict , setSelectDistrict]=useState("")
   // context data
   const {createUser , updateUser , setUser  ,loading} = useAuth()
   if(loading)return <LoadingSpner/>
@@ -26,7 +27,7 @@ const Register = () => {
   const confirmPassword = form.Confirm_Password.value;
   const image = form?.image?.files[0];
   const blood_group = form.blood_group.value;
-  const district = form.district.value;
+  const district = selectDistrict;
   const upazila = form.upazila.value;
   
 
@@ -116,7 +117,7 @@ const Register = () => {
                  </div>
                  {/* form */}
                   <div className='lg:pt-20'>
-                    <RegisterForm handleRegister={handleRegister}  error={error}></RegisterForm>
+                    <RegisterForm handleRegister={handleRegister} setSelectDistrict={setSelectDistrict} error={error}></RegisterForm>
                   </div>
                 </div>
                 {/* animation */}

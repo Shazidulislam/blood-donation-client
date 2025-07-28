@@ -1,9 +1,24 @@
-import React, {   } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import useAuth from '../../hook/useAuth';
 import { TbFidgetSpinner } from 'react-icons/tb';
-const RegisterForm = ({handleRegister , error}) => {
-    const {upazilas , districtData , loading} = useAuth()
+const RegisterForm = ({handleRegister , error , setSelectDistrict}) => {
+    const {districtData ,upazilas, loading} = useAuth()
+    const [selectedDistrictId, setSelectedDistrictId] = useState("")
+    const [filteredUpazilas, setFilteredUpazilas] = useState([]);
+  
+
+    
+        useEffect(()=>{
+            
+                  if(selectedDistrictId){
+                    const filtered  = upazilas.filter((upazila)=> upazila?.district_id ===selectedDistrictId )
+                    setFilteredUpazilas(filtered)
+                    }
+                    else{
+                        setFilteredUpazilas([]);
+                    }
+        },[selectedDistrictId , upazilas])
 
 
     return ( 
@@ -53,36 +68,39 @@ const RegisterForm = ({handleRegister , error}) => {
                         </select>
                         </fieldset>
                         {/* selected district start */}
-                          <fieldset className="fieldset  w-xs md:w-lg">
-                                <legend className="fieldset-legend">Your District</legend>
-                                <select name="district" 
-                                defaultValue="Select Your Current District" className="w-full p-3 rounded outline-none bg-white shadow text-gray-800">
+                          <fieldset className="fieldset w-xs pr-2 pt-2 lg:w-lg  font-medium">
+                            <label htmlFor="name" className="block text-gray-400 text-sm">Recipient District</label>
+                        <select  
+                                 onChange={(e) => {
+                                        const [ name,id] = e.target.value.split("|||");
+                                       setSelectedDistrictId(id);
+                                        setSelectDistrict( name);
+                                    }}
+                                defaultValue="Select Your Current District" required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#33929D] outline-none bg-white text-gray-800">
                                     <option disabled={true}>Select Your Current District</option>
                                     {
                                         districtData.map((district)=>(
-                                            <option key={district?.id} value={district?.name}>
+                                            <option key={district?.id} value={`${district?.name}|||${district?.id}` }>
                                                 {district?.name}
                                             </option>
                                         ))
                                     }
-                                </select>
-                          </fieldset>
-                        {/* selected district end */}
-                        {/* selected upazila start */}
-                          <fieldset className="fieldset  w-xs md:w-lg">
-                                <legend className="fieldset-legend">Your current Upazila</legend>
+                        </select>
+                    </fieldset>
+                      {/* selected upazila start */}
+                    <fieldset className="fieldset w-xs pr-2   pt-2  lg:w-lg">
+                               <label htmlFor="name" className="block text-gray-400 text-sm">Recipient Upazila</label>
                                 <select name="upazila"
-                                        className="w-full border border-gray-300 rounded px-3 py-2"
-                                       
+                                        required className="w-full p-3 border-b-2 border-gray-500 hover:border-[#33929D] outline-none bg-white text-gray-800"
                                         >
                                         <option value="">Select an upazila</option>
-                                        {upazilas.map((upazila) => (
+                                        {filteredUpazilas.map((upazila) => (
                                             <option key={upazila.id} value={upazila.name}>
                                             {upazila.name}
                                             </option>
                                         ))}
                                 </select>
-                          </fieldset>
+                    </fieldset>
                         {/* selected upazila end */}
                         {/* password */}
                         <fieldset className="fieldset w-xs md:w-lg  font-medium">

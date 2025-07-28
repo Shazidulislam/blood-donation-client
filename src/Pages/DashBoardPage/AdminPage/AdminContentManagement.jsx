@@ -53,8 +53,8 @@ const AdminContentManagement = () => {
              <div className='bg-white px-4 py-10 rounded-lg shadow-lg'>
                  <div>
                     <div className='flex justify-between items-start'>
-                         <h2 className='text_primary text-2xl md:text-4xl lg:text-5xl font-bold'>Publish Powerhouse</ h2>
-                         <Link to="/dashboard/content-management/add-blog" className='text-sm font-medium px-6 py-2 cursor-pointer border-2 border-[#403] transition-all transform duration-300 hover:scale-105'>Add Blog</Link>
+                         <h2 className='text-[#D25D5D] text-2xl md:text-4xl lg:text-5xl font-bold'>Publish Powerhouse</ h2>
+                         <Link to="/dashboard/content-management/add-blog" className='text-sm font-medium px-6 py-2 cursor-pointer border-2 border-[#D25D5D] text-[#D25D5D] transition-all transform duration-300 hover:scale-105'>Add Blog</Link>
                     </div>
                      <p className='text-lg font-medium text-gray-400 pt-3'>Organize and control your digital storytelling</p>
                      <div className='divider'></div>
@@ -71,7 +71,7 @@ const AdminContentManagement = () => {
                                 <option value="published">Publish</option>
                                 </select>
                             </div>
-                     <div className='grid grid-cols-2 gap-6'>
+                     <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
 
                         {
                             filterBlog?.map((blog)=> <BlogCard key={blog?._id} blog={blog} ></BlogCard>)

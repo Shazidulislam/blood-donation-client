@@ -4,11 +4,13 @@ import { Link } from 'react-router';
 import useAxiousSecure from '../../../../hook/useAxiosSecure';
 import useUpdateDonationStatus from '../../../../api/useUpdateDonationStatus';
 import LoadingSpner from '../../../LoadingSpner';
+import { useRole } from '../../../../hook/useRole';
 
 const AdminallDonationTable = ({size , page}) => {
      const  axiosInstance= useAxiousSecure()
      const {mutate} = useUpdateDonationStatus() 
      const [searchText , setSearchText] = useState("")
+     const [role] = useRole()
      // get data 
     const {data ,isLoading }=useQuery({
         queryKey:["adminallDonation" ,size , page ],
@@ -103,23 +105,34 @@ const AdminallDonationTable = ({size , page}) => {
                                      donation?.donation_status==="inprogress"&& <button onClick={()=>mutate({
                                         id:donation._id, 
                                         status:"done"
-                                     })} className='px-3 py-1 cursor-pointer bg-[#33929D] rounded-full text-white' > Done</button>
+                                     })} className='px-3 py-1 cursor-pointer bg-[#D25D5D] rounded-full text-white' > Done</button>
                                     }
                                     {/* cancled the status */}
+                                    {
+                                     donation?.donation_status==="pending"&& role==="volunteer"? <button onClick= {()=>mutate({
+                                        id:donation._id , 
+                                        status:"inprogress"
+                                     })} className='px-3 py-1 cursor-pointer bg-[#D25D5D] rounded-full text-white'>Inprogress</button>:""
+                                    }
                                     {
                                      donation?.donation_status==="inprogress"&& <button onClick= {()=>mutate({
                                         id:donation._id , 
                                         status:"canceled"
-                                     })} className='px-3 py-1 cursor-pointer bg-[#33929D] rounded-full text-white'>Cancle</button>
+                                     })} className='px-3 py-1 cursor-pointer bg-[#D25D5D] rounded-full text-white'>Cancle</button>
                                     }
                                     {/* edit it request */}
-                                    <Link to={`/dashboard/edit-donation/${donation?._id}`}  className='px-3 py-1 bg-[#33929D] rounded-full text-white' >Edit</Link>
+                                   {
+                                     donation?.donation_status==="pending"&& role==="admin" ? <Link to={`/dashboard/edit-donation/${donation?._id}`}  className='px-3 py-1 bg-[#D25D5D] rounded-full text-white' >Edit</Link>:""
+                                   }
                                     {/* delete thi requst */}
-                                    <button  onClick={()=>mutate({
+                                    {
+                                        donation?.donation_status==="pending" && role === "admin"?<button  onClick={()=>mutate({
                                         id:donation._id , 
                                         status:"delete"
-                                     })}  className='px-3 py-1 bg-[#33929D] cursor-pointer rounded-full text-white' >Delete </button>
-                                    <Link to={`/dashboard/diatils/${donation?._id}`} className='px-3 py-1 bg-[#33929D] rounded-full text-white'>Details</Link>
+                                     })}  className='px-3 py-1 bg-[#D25D5D] cursor-pointer rounded-full text-white' >Delete </button>:""
+                                    }
+                                    
+                                    <Link to={`/dashboard/diatils/${donation?._id}`} className='px-3 py-1 bg-[#D25D5D] rounded-full text-white'>Details</Link>
                                 </div>
                             </td>
                         </tr>

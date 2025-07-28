@@ -3,10 +3,12 @@ import React from 'react';
 import useAxiousSecure from '../../hook/useAxiosSecure';
 import toast from 'react-hot-toast';
 import LoadingSpner from '../../Component/LoadingSpner';
+import { useRole } from '../../hook/useRole';
 
 const BlogCard = ({blog}) => {
     const  axiosInstance = useAxiousSecure()
     const queryClient = useQueryClient()
+    const [role] = useRole()
 
 
     const {mutate , isLoading} = useMutation({
@@ -50,24 +52,26 @@ const BlogCard = ({blog}) => {
              <p className='text-sm text-gray-600'>{blog_content}</p>
              <div className='flex justify-end gap-2 pt-4'>
                 {
-                    blog_status === "draft" && <button onClick={()=>mutate({
+                    blog_status === "draft" && role==="admin" ?  <button onClick={()=>mutate({
                         id:_id,
                         status:"published"
-                    })} className='px-4 py-2 bg-amber-500 rounded text-white cursor-pointer'>Publish</button>
+                    })} className='px-4 py-2 bg-amber-500 rounded text-white cursor-pointer'>Publish</button>:""
                 }
                 {
-                    blog_status === "published" && <button onClick={()=>mutate({
+                    blog_status === "published" && role==="admin" ?<button onClick={()=>mutate({
                         id:_id,
                         status:"draft"
-                    })} className='px-4 py-2 bg-lime-500 rounded text-white cursor-pointer'>UnPublish</button>
+                    })} className='px-4 py-2 bg-lime-500 rounded text-white cursor-pointer'>UnPublish</button>:""
                 }
-                 
+                 {/* //to do edit button */}
                  <button  className='px-4 py-2 bg-lime-500 rounded text-white cursor-pointer'>Edit</button>
-                 <button onClick={()=>mutate({
+                {
+                    role==="admin" ? <button onClick={()=>mutate({
                         id:_id,
                         status:"delete"
                     })}
-                  className="px-4 py-2 bg-red-500 rounded text-white cursor-pointer" >Delete</button>
+                  className="px-4 py-2 bg-red-500 rounded text-white cursor-pointer" >Delete</button>:""
+                }
              </div>
            </div>
         </div>

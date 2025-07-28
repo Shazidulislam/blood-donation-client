@@ -6,7 +6,7 @@ const ProFirstButton = ({color}) => {
         <div>
             <div className="flex cursor-pointer   justify-center items-center ">
                 <img className={`w-16 h-16 bg-white rounded-full ${color?"bg-gray-100":"bg-white"}`} src={logo} alt="" />
-                <h1 className='text-2xl -ml-4  text-[#33929D] font-bold '>DonorBridge</h1>
+                <h1 className='text-3xl -ml-4 font-seconbary  '><span className='text-[#B9375D]'>RED</span>irect</h1>
             </div>
         </div>
     );

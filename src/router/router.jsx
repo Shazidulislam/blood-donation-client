@@ -17,6 +17,8 @@ import AllBloodDonationRequest from "../Pages/DashBoardPage/AdminPage/AllBloodDo
 import AddBlog from "../Pages/DashBoardPage/AdminPage/AddBlog";
 import AdminContentManagement from "../Pages/DashBoardPage/AdminPage/AdminContentManagement";
 import AdminPriviteRoute from "../PriviteComponent/AdminPriviteRoute";
+import SearchPage from "../Pages/SerchPage/SearchPage";
+import BloodDonationRequest from "../Pages/BloodDonationRequestPage/BloodDonationRequest";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +28,14 @@ const router = createBrowserRouter([
             {
                 index:true,
                 element:<Home></Home>
+            },
+            {
+                path:"/search",
+                element:<SearchPage></SearchPage>
+            },
+            {
+                path:"/all-blood-donation-request",
+                element:<BloodDonationRequest></BloodDonationRequest>
             }
         ]
     },
@@ -69,7 +79,7 @@ const router = createBrowserRouter([
                 path:"/dashboard/diatils/:id",
                 element:<PriviteRoute><DonationDitails></DonationDitails></PriviteRoute>
             },
-            // admin
+            // admin && volunteer
             {
                 path:"/dashboard/all-donner-info",
                 hydrateFallbackElement:<LoadingSpner></LoadingSpner>,
@@ -81,6 +91,7 @@ const router = createBrowserRouter([
                 hydrateFallbackElement:<LoadingSpner/>,
                 loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-all-donation`),
                 element:<AdminPriviteRoute><PriviteRoute><AllBloodDonationRequest></AllBloodDonationRequest></PriviteRoute></AdminPriviteRoute>
+                // element:<PriviteRoute><AllBloodDonationRequest></AllBloodDonationRequest></PriviteRoute>
             },
             {
                 path:"/dashboard/content-management",

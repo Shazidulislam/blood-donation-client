@@ -13,8 +13,15 @@ const useUpdateDonationStatus = () => {
       console.log(data)
       return data;
     },
-    onSuccess:()=>{
-         toast.success(`Donation status update`)
+    onSuccess:(data)=>{
+        if(data?.modifiedCount){
+                 toast.success(`Donation status update`)
+        }
+         else if(data?.deletedCount){
+                toast.success("Donatio delete  Successfully!")
+        }
+
+        
          QueryClient.invalidateQueries({ queryKey: ['recentDonation' ] })
          QueryClient.invalidateQueries({ queryKey: ['allDonation' ] })
          QueryClient.invalidateQueries({ queryKey: ['adminallDonation' ] })
