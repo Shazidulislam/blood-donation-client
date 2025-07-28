@@ -16,8 +16,10 @@ const Blog = () => {
             }
         })
     if(isLoading) return <LoadingSpner/>  
-      const filterBlog = data?.filter(blog =>
-    blog?.blog_status?.toLowerCase().includes("published"))
+   const filterBlog = data?.filter(blog =>
+  blog?.blog_status?.toLowerCase() === "published" &&
+  blog?.title?.toLowerCase().includes(searchText?.toLowerCase())
+);
     console.log(filterBlog)
     return (
         <div className='py-1'>

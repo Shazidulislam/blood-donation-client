@@ -3,6 +3,7 @@ import useAuth from '../../hook/useAuth';
 import LoadingSpner from '../../Component/LoadingSpner';
 import { useQuery } from '@tanstack/react-query';
 import useAxiousSecure from '../../hook/useAxiosSecure';
+import SearchCard from '../../Context/Card/SearchCard';
 
 const SearchPage = () => {
     const {districtData ,upazilas, loading} = useAuth()
@@ -115,7 +116,12 @@ if(selectedDistrictId){
                 {
                     searchResult.length === 0?"":
                     <>
-                    <h2>Hell</h2>
+                      <h2 className='text-center text-2xl md:text-4xl text-[#D25D5D]' >Matching Donors</h2>
+                      <div className='grid grid-cols-1 md:grid-cols-3 gap-5 py-6'>
+                            {
+                                searchResult?.map(user=><SearchCard user={user} key={user?._id} ></SearchCard>)
+                            }
+                      </div>
                     </>                 
                 }
             </div>
