@@ -6,13 +6,26 @@ import {  FaUserTie } from 'react-icons/fa';
 import { BsCurrencyDollar } from 'react-icons/bs';
 import { MdBloodtype } from 'react-icons/md';
 import { useLoaderData } from 'react-router';
+import { useQuery } from '@tanstack/react-query';
+import useAxiousSecure from '../../../hook/useAxiosSecure';
 
 const AdminHomePage = () => {
    const {count} = useLoaderData()
     const {user ,donation , loading} = useAuth()
+    const axiosInstance = useAxiousSecure()
     const [role , ] = useRole()
     console.log(role)
-    if(loading) return <LoadingSpner/>
+
+    const {data , isLoading} = useQuery({
+      queryKey:["totlafund"],
+      queryFn:async()=>{
+        const {data} = await axiosInstance("/totla-funding")
+        return data
+      }
+    })
+
+    console.log(data)
+    if(loading ||isLoading) return <LoadingSpner/>
     return (
                <div>
                     {/* welcome user */}
@@ -37,7 +50,7 @@ const AdminHomePage = () => {
                                <span className='text-lime-600 bg-lime-100 p-4 rounded-full'>
                                  <BsCurrencyDollar   size={36}/>
                                </span>
-                                <p>$10,000</p>
+                                <p>${data?.total}</p>
                                 <h2 className='text-xl text-gray-500  '>Total Funding</h2>
                                 <p className='text-xs text-gray-500'>Updated: July 2025</p>
                             </div>

@@ -5,6 +5,7 @@ import useAxiousSecure from '../../../../hook/useAxiosSecure';
 import useUpdateDonationStatus from '../../../../api/useUpdateDonationStatus';
 import LoadingSpner from '../../../LoadingSpner';
 import { useRole } from '../../../../hook/useRole';
+import Swal from 'sweetalert2';
 
 const AdminallDonationTable = ({size , page}) => {
      const  axiosInstance= useAxiousSecure()
@@ -123,10 +124,27 @@ const AdminallDonationTable = ({size , page}) => {
                                    }
                                     {/* delete thi requst */}
                                     {
-                                        donation?.donation_status==="pending" && role === "admin"?<button  onClick={()=>mutate({
-                                        id:donation._id , 
-                                        status:"delete"
-                                     })}  className='px-3 py-1 bg-[#D25D5D] cursor-pointer rounded-full text-white' >Delete </button>:""
+                                        donation?.donation_status==="pending" && role === "admin"?<button  onClick={()=>Swal.fire({
+                                                        title: "Are you sure?",
+                                                        text: "You won't be able to revert this!",
+                                                        icon: "warning",
+                                                        showCancelButton: true,
+                                                        confirmButtonColor: "#3085d6",
+                                                        cancelButtonColor: "#d33",
+                                                        confirmButtonText: "Yes, delete it!"
+                                                        }).then((result) => {
+                                                        if (result.isConfirmed) {
+                                                            mutate({
+                                                                id:donation._id , 
+                                                                status:"delete"
+                                                            })
+                                                            Swal.fire({
+                                                            title: "Deleted!",
+                                                            text: "Your file has been deleted.",
+                                                            icon: "success"
+                                                            });
+                                                        }
+                                                        })   }  className='px-3 py-1 bg-[#D25D5D] cursor-pointer rounded-full text-white' >Delete </button>:""
                                     }
                                     
                                     <Link to={`/dashboard/diatils/${donation?._id}`} className='px-3 py-1 bg-[#D25D5D] rounded-full text-white'>Details</Link>
@@ -148,4 +166,6 @@ const AdminallDonationTable = ({size , page}) => {
 };
 
 export default AdminallDonationTable;
+
+
 
