@@ -5,30 +5,36 @@ import toast from 'react-hot-toast';
 import { BarLoader } from 'react-spinners';
 import { useMutation } from '@tanstack/react-query';
 import useAxiousSecure from '../../hook/useAxiosSecure';
+import useAuth from '../../hook/useAuth';
 
 const PaymentForm = ({donnetAmmount , closeModal , donationData}) => {
+  const {user} = useAuth()  
  const stripe = useStripe();
   const elements = useElements();
   const [cardError , setCardError] = useState(null);
   const [cardProssesing , setCardProssesing] =useState(false);
   const axiosInstance = useAxiousSecure()
-  const [clientSecret , , setClientSecret ] = useState("")
+  const [clientSecret ,  setClientSecret ] = useState("")
 
    const {mutate } =useMutation({
     mutationFn:async(donationData)=>{
       const {data} = await axiosInstance.post("/create-payment-intent" ,donationData )
+    
       return data
     },
     onSuccess:(data)=>{
         console.log(data)
-        // setClientSecret("")
+      if(data?.client_secret){
+        setClientSecret(data?.client_secret)
+      }
+       
     },
     onError:(err)=>{
         console.log(err)
     }
    })
    
-  
+   console.log(clientSecret)
 
    useEffect(()=>{
     mutate(donationData)
@@ -70,6 +76,51 @@ const PaymentForm = ({donnetAmmount , closeModal , donationData}) => {
       console.log('[PaymentMethod]', paymentMethod);
       setCardError(null)
     }
+
+
+
+        const result =  await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                card,
+                billing_details: {
+                name:user?.displayName,
+                email:user?.email,
+            },
+        },
+        })
+
+      console.log(result)  
+      if(result?.error){
+           setCardError(result?.error?.message)
+            return   
+      }
+      if(result?.paymentIntent?.status === "succeeded" ){
+    // save ordrer data in db
+       donationData.transactionId = result?.paymentIntent?.id
+    // console.log( orderData.transactionId)
+      try{
+               
+          const {data} = await axiosInstance.post("/save-pament-data" ,donationData )
+          if(data){
+            toast.success("Donation successfully!")
+          }
+          console.log(data)
+         }
+         
+         catch(err){
+             setCardError(err?.message)
+         }
+         finally{
+             setCardError(null)
+             setCardProssesing(false)
+             closeModal()
+         }
+        
+        //update product quantity in db from plant collection
+
+    }
+
+
   };
 
   return (
