@@ -24,8 +24,8 @@ const Sidebar = () => {
 
   const[role ,status,roleLoading ]=useRole()
   console.log(status)
-  console.log(roleLoading)
-// //   console.log(role)
+  //console.log(roleLoading)
+// //   //console.log(role)
 //  if(!user || loading)return <LoadingSpner/>
  if(!user || loading ||roleLoading)return <LoadingSpner/>
 

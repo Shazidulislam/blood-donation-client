@@ -1,14 +1,31 @@
 import React, { useState } from 'react';
 import PurchaseModal from '../../Component/Modal/PurchaseModal';
+import { useQuery } from '@tanstack/react-query';
+import LoadingSpner from '../../Component/LoadingSpner';
+import useAxiousSecure from '../../hook/useAxiosSecure';
+import FunDingTable from '../../Component/Sheard/DashbordMenu/Table/FunDingTable';
+
+
 
 
 
 const Funding = () => {
-    console.log(import.meta.env.VITE_STRIPE_PAYMENT_PK_KEY)
+    const axiosInstance = useAxiousSecure()
      let [isOpen, setIsOpen] = useState(false)
      const closeModal= ()=>{
          setIsOpen(false)
      }
+
+
+     const {data , isLoading , refetch} = useQuery({
+        queryKey:["funding"],
+        queryFn:async()=>{
+             const {data} = await axiosInstance("/blood-fund-donatio")
+             return data
+        }
+     })
+     //console.log(data)
+    if(isLoading) return <LoadingSpner/>
     return (
         <div className='py-10' >
             <div className='grid grid-cols-12' >
@@ -23,11 +40,14 @@ const Funding = () => {
             </div>
             <div>
         </div>
-        <h2>Helllllllllllllllll</h2>
+        {
+            data?.length === 0 ?"": <FunDingTable data={data} ></FunDingTable>
+        }
+        
        
         {/*  */}
         <div>
-           <PurchaseModal closeModal={closeModal} isOpen={isOpen}  ></PurchaseModal> 
+           <PurchaseModal closeModal={closeModal} isOpen={isOpen} refetch={refetch} ></PurchaseModal> 
         </div>
         </div>
     );

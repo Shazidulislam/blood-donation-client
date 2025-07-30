@@ -6,7 +6,7 @@ import useAxiousSecure from '../../hook/useAxiosSecure';
 
 const BlogDeatils = () => {
     const {id} = useParams()
-    console.log(id)
+    //console.log(id)
     const axiosInstance = useAxiousSecure()
     const {data ,isLoading } = useQuery({
         queryKey:["PublishedblogCard"  , id],
@@ -15,7 +15,7 @@ const BlogDeatils = () => {
             return data
         }
     })
-    console.log(data)
+    //console.log(data)
     const {title ,blog_image ,blog_status ,blog_content , create_at , create_by , created_name  } = data || {}
     const date = new Date(create_at)
     const formatted = date.toLocaleDateString()

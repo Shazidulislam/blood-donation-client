@@ -7,7 +7,7 @@ import LoadingSpner from '../../../Component/LoadingSpner';
 
 const AdminContentManagement = () => {
     const {count} = useLoaderData()
-    console.log(count)
+    //console.log(count)
     const axiosInstance = useAxiousSecure()
     //size
     const [itemsPerPage , setItemsPerPage] = useState(2)
@@ -16,7 +16,7 @@ const AdminContentManagement = () => {
      const numberofPage = Math.ceil(count/itemsPerPage)
      const [searchText, setSearchText] = useState('');
     const pages = [...Array(numberofPage).keys()]
-    console.log("numberof page",numberofPage ,"page", pages , )
+    //console.log("numberof page",numberofPage ,"page", pages , )
 
 
     const {data ,isLoading } = useQuery({
@@ -31,7 +31,7 @@ const AdminContentManagement = () => {
             return data
         }
     })
-     console.log(data)
+    //  //console.log(data)
 
     const handlePreviosPage =()=>{
         if(currentPage > 0){

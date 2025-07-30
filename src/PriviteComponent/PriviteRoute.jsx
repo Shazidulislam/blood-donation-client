@@ -6,7 +6,7 @@ import { Navigate, useLocation } from 'react-router';
 const PriviteRoute = ({children}) => {
     const {user , loading} = useAuth()
     const location = useLocation()
-    console.log(loading)
+    //console.log(loading)
     if(loading) return <LoadingSpner></LoadingSpner>
      if(user){
          return (children);

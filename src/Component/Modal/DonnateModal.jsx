@@ -25,7 +25,7 @@ export default function DonateModal({ onClose, isOpen, id }) {
     },
     onError: (err) => {
       toast.error(err.message)
-      console.log(err.message)
+      //console.log(err.message)
     }
   })
 

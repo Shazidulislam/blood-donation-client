@@ -62,7 +62,7 @@ const Register = () => {
   try {
     //file to image use imgbb
     const imageURL = await imageUpload(image);
-    const submissionData = { name, email, blood_group, district, upazila, imageURL,  };
+    const submissionData = { name, email, blood_group, district, upazila, imageURL };
     console.log(submissionData);
 
     // Create user

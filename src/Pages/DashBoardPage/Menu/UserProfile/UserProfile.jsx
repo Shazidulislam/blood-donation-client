@@ -22,7 +22,7 @@ const getUserProfile = () => {
     },
     enabled: !!user?.email,
   });
-  console.log(getUser)
+  //console.log(getUser)
   const { mutate } = useMutation({
     mutationFn: async (submisionData) => {
       const { data } = await axiosInstance.patch(`/update-user-info/${user?.email}`, submisionData);
@@ -36,7 +36,7 @@ const getUserProfile = () => {
     },
     onError:(err)=>{
         toast.error("Vai tumar data jai na!" , err.message)
-        console.log(err.message)
+        //console.log(err.message)
     }
   });
 
@@ -55,7 +55,7 @@ const getUserProfile = () => {
     const form = e.target
     const formData = new FormData(form)
     const submisionData = Object.fromEntries(formData.entries())
-    console.log(submisionData)
+    //console.log(submisionData)
     mutate(submisionData )
     setEditable(false);
     form.reset()

@@ -18,7 +18,7 @@ const BlogCard = ({blog}) => {
             return data
         },
         onSuccess:(data)=>{
-            console.log(data)
+            //console.log(data)
              if(data?.modifiedCount){
                 toast.success("Status update Successfully!")
              }
@@ -30,13 +30,13 @@ const BlogCard = ({blog}) => {
         },
         onError:(err)=>{
             toast.error(err.message)
-            console.log(err)
+            //console.log(err)
         }
     })
 
    if(isLoading) return <LoadingSpner/>
 
-    console.log(blog)
+    //console.log(blog)
     const {blog_image ,title,blog_content , blog_status , _id } = blog ||{}
     return (
         <div className='flex flex-col'>

@@ -27,7 +27,7 @@ const Alluser = () => {
 
     const numberofPage = Math.ceil(count/itemsPerPage)
     const pages = [...Array(numberofPage).keys()]
-    console.log(numberofPage , pages)
+    //console.log(numberofPage , pages)
     const handlePreviosPage =()=>{
         if(currentPage > 0){
             setCurrentPage(currentPage-1)

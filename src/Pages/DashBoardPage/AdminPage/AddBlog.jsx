@@ -32,7 +32,7 @@ const AddBlog = () => {
 }; 
 
 const clenText = stripHtml(content)
-console.log(clenText)
+//console.log(clenText)
  const handleSubmit = async(e) => {
     e.preventDefault();
      const form = e.target;
@@ -49,7 +49,7 @@ console.log(clenText)
             created_name:user?.displayName,
         }
         mutate({submisionData,})
-       console.log(submisionData)  
+      //  //console.log(submisionData)  
        form.reset()
      }
      catch(err){

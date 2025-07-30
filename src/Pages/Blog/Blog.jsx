@@ -20,7 +20,7 @@ const Blog = () => {
   blog?.blog_status?.toLowerCase() === "published" &&
   blog?.title?.toLowerCase().includes(searchText?.toLowerCase())
 );
-    console.log(filterBlog)
+    //console.log(filterBlog)
     return (
         <div className='py-1'>
             <div className='px-2 md:px-10  py-10 bg-[#D25D5D] text-white my-1 rounded'>

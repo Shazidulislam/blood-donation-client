@@ -25,17 +25,17 @@ const UpdateDonation = () => {
           const {mutate  } = useMutation({
               mutationFn:async(bloodReuestData)=>{
                  const {data} =await axiosInstance.put(`/donation-update/${id}`, bloodReuestData )
-                 console.log("inside data", data)
+                 //console.log("inside data", data)
                  return data
               }, 
               onSuccess:(data)=>{
-                  console.log(data)
-                  console.log("outside data" , data)
+                  //console.log(data)
+                  //console.log("outside data" , data)
                     toast.success("Your request Update successfully!")
                     queryClient.invalidateQueries({ queryKey: ['findDonation'] })
               },
               onError:(err)=>{
-                  console.log(err)
+                  //console.log(err)
                   if(err){
                       toast.error(err.message)
                   }
@@ -56,7 +56,7 @@ const UpdateDonation = () => {
        const formData = new FormData(form)
        const bloodReuestData = Object.fromEntries(formData.entries())
        bloodReuestData.donation_status = "pending"
-       console.log(bloodReuestData)
+       //console.log(bloodReuestData)
         mutate(bloodReuestData) 
     }
 

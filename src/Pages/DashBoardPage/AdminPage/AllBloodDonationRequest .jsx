@@ -8,7 +8,7 @@ const  AllBloodDonationRequest  = () => {
     const [currentPage , setCurrentPage] = useState(0)
     const numberofPage = Math.ceil(count/itemsPerPage)
      const pages = [...Array(numberofPage).keys()]
-      console.log(numberofPage)
+    //   //console.log(numberofPage)
 
     const handleNextPage =()=>{
         if(currentPage < pages.length-1){

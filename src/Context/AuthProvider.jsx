@@ -19,7 +19,7 @@ const AuthProvider = ({ children }) => {
   const [ districtData,setDistrictData] = useState([])
   const [upazilas , setUpazilas] = useState([])
   const [donation , setDonation] = useState(null)
- console.log(user)
+//  //console.log(user)
   const createUser = (email, password) => {
     setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
@@ -34,8 +34,8 @@ const AuthProvider = ({ children }) => {
   // onAuthStateChange save user
   useEffect(() => {
     const unsubscribe =  onAuthStateChanged(auth,  currentUser => {
-      console.log('email from authprovider', currentUser?.email)
-      console.log('user from authprovider', currentUser)
+      //console.log('email from authprovider', currentUser?.email)
+      //console.log('user from authprovider', currentUser)
         setUser(currentUser)
         if(currentUser){
          setLoading(false)
@@ -66,7 +66,7 @@ useEffect(() => {
         const districtRes = await fetch("/distric.json");
         const districtJson = await districtRes.json();
         const {data} = await axios(`${import.meta.env.VITE_SERVER_KEY}/count-all-donation`)
-        console.log("donation data from " , data.count)
+        //console.log("donation data from " , data.count)
         const upazilaRes = await fetch("/Upazilas.json");
 
         const upazilaJson = await upazilaRes.json();

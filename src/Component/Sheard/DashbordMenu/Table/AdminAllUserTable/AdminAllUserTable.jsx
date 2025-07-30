@@ -16,7 +16,7 @@ const AdminAllUserTable = ({ data, isLoading }) => {
 const { mutate  } = useMutation({
   mutationFn: async({ id, status })=>{
     const { data } = await axiosInstance.patch(`/user-status/update/${id}`, { status });
-    console.log(data)
+    //console.log(data)
     return data;
   },
   onSuccess: () => {

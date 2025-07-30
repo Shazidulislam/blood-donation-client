@@ -15,11 +15,12 @@ const CreateDonationRequext = () => {
            return data
         }, 
         onSuccess:(data)=>{
-            console.log(data)
-              toast.success("Your request done!")
+            //console.log(data)
+            if(data)toast.success("Your request done!")
+              
         },
         onError:(err)=>{
-            console.log(err)
+            //console.log(err)
             if(err){
                 toast.error(err.message)
             }
@@ -37,7 +38,7 @@ const CreateDonationRequext = () => {
        const bloodReuestData = Object.fromEntries(formData.entries())
        bloodReuestData.donation_status = "pending"
        bloodReuestData.district =  district
-       console.log(bloodReuestData.district)
+    //    //console.log(bloodReuestData.district)
         mutate(bloodReuestData) 
         form.reset()
     }

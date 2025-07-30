@@ -11,10 +11,9 @@ const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PAYMENT_PK_KEY);
 
 
 
-const  PurchaseModal=({closeModal , isOpen})=>{
+const  PurchaseModal=({closeModal , isOpen , refetch})=>{
   const {user , loading} = useAuth()
 
-  console.log(user)
 
   const [donnetAmmount , setDonnetAmount] = useState(1)
   const [donationData , setDonationData] = useState({
@@ -22,15 +21,16 @@ const  PurchaseModal=({closeModal , isOpen})=>{
     email:user?.email,
     image:user?.photoURL,
   })
-  console.log(donationData)
 
   const handleQunatity=(value)=>{
     const totalDonation = parseInt(value)
    setDonnetAmount(parseFloat(totalDonation))
+   const todayDate = new Date().toISOString()
    setDonationData(prev=>{
     return{
       ...prev,
       donation:totalDonation,
+      create_at:new Date(todayDate).toLocaleString()
     }
    })
   }
@@ -70,7 +70,7 @@ const  PurchaseModal=({closeModal , isOpen})=>{
              </div>
              <div className=''>
                  <Elements stripe={stripePromise}>
-                      <PaymentForm donnetAmmount={donnetAmmount} closeModal={closeModal} donationData={donationData} ></PaymentForm>
+                      <PaymentForm donnetAmmount={donnetAmmount} refetch={refetch} closeModal={closeModal} donationData={donationData} ></PaymentForm>
                 </Elements>
             </div>  
             </DialogPanel>

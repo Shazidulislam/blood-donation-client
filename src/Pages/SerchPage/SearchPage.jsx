@@ -46,7 +46,7 @@ if(selectedDistrictId){
                 );
               setSearchResult(filteredDonors);
     }
-    console.log(searchResult )
+    //console.log(searchResult )
     if(loading || isLoading) return <LoadingSpner/>
     return (
         <div className=' pt-1 rounded-xl'>

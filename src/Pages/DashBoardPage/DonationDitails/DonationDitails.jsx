@@ -20,7 +20,7 @@ const DonationDitails = () => {
                 return data
             }
         })
-        console.log(data)
+        //console.log(data)
         const {recipient_name , hospital_name ,requester_name  ,district, upazila , blood_group, donation_status , donation_date , donation_time ,requester_email  } = data||{}
     if(isLoading) return <LoadingSpner/>
     return (

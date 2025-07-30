@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import useAxiousSecure from '../../hook/useAxiosSecure';
 import useAuth from '../../hook/useAuth';
 
-const PaymentForm = ({donnetAmmount , closeModal , donationData}) => {
+const PaymentForm = ({donnetAmmount , closeModal , donationData , refetch}) => {
   const {user} = useAuth()  
  const stripe = useStripe();
   const elements = useElements();
@@ -23,18 +23,15 @@ const PaymentForm = ({donnetAmmount , closeModal , donationData}) => {
       return data
     },
     onSuccess:(data)=>{
-        console.log(data)
       if(data?.client_secret){
         setClientSecret(data?.client_secret)
       }
        
     },
-    onError:(err)=>{
-        console.log(err)
+    onError:()=>{
     }
    })
    
-   console.log(clientSecret)
 
    useEffect(()=>{
     mutate(donationData)
@@ -89,7 +86,7 @@ const PaymentForm = ({donnetAmmount , closeModal , donationData}) => {
         },
         })
 
-      console.log(result)  
+    //   //console.log(result)  
       if(result?.error){
            setCardError(result?.error?.message)
             return   
@@ -97,14 +94,14 @@ const PaymentForm = ({donnetAmmount , closeModal , donationData}) => {
       if(result?.paymentIntent?.status === "succeeded" ){
     // save ordrer data in db
        donationData.transactionId = result?.paymentIntent?.id
-    // console.log( orderData.transactionId)
+    //console.log( orderData.transactionId)
       try{
                
           const {data} = await axiosInstance.post("/save-pament-data" ,donationData )
           if(data){
             toast.success("Donation successfully!")
           }
-          console.log(data)
+        //   //console.log(data)
          }
          
          catch(err){
@@ -114,6 +111,7 @@ const PaymentForm = ({donnetAmmount , closeModal , donationData}) => {
              setCardError(null)
              setCardProssesing(false)
              closeModal()
+             refetch()
          }
         
         //update product quantity in db from plant collection
