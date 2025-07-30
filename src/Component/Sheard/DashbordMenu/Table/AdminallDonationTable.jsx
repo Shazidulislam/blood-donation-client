@@ -27,7 +27,9 @@ const AdminallDonationTable = ({size , page}) => {
     const filterDonations = data?.filter(donation=>donation.donation_status.toLowerCase().includes(searchText))
     if( isLoading) return <LoadingSpner/> 
     return ( 
-        <div>
+      <div>
+        {
+            filterDonations?.length === 0 ?"": <div>
             <div className='flex justify-end'>
                 <input type="text"  name="" 
                 value={searchText}
@@ -138,6 +140,10 @@ const AdminallDonationTable = ({size , page}) => {
             </div>
         </div>
         </div>
+        }
+
+       
+      </div>
     );
 };
 

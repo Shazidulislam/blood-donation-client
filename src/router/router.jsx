@@ -21,11 +21,14 @@ import SearchPage from "../Pages/SerchPage/SearchPage";
 import BloodDonationRequest from "../Pages/BloodDonationRequestPage/BloodDonationRequest";
 import Blog from "../Pages/Blog/Blog";
 import BlogDeatils from "../Pages/BlogDeatils/BlogDeatils";
+import ErrorPage from "../Pages/Error/ErrorPage";
+import Funding from "../Pages/Funding/Funding";
 
 const router = createBrowserRouter([
     {
         path:"/",
-        Component:RootLayout,
+        element:<RootLayout></RootLayout>,
+        // errorElement:<ErrorPage></ErrorPage>,
         children:[
             {
                 index:true,
@@ -46,6 +49,14 @@ const router = createBrowserRouter([
             {
                 path:"/blog-deatils/:id",
                 element:<PriviteRoute><BlogDeatils></BlogDeatils></PriviteRoute>
+            },
+            {
+                path:"/*",
+                element:<ErrorPage></ErrorPage>
+            },
+            {
+                path:"/funding",
+                element:<PriviteRoute><Funding></Funding></PriviteRoute>
             }
         ]
     },
@@ -112,7 +123,11 @@ const router = createBrowserRouter([
             {
                 path:"/dashboard/content-management/add-blog",
                 element:<AdminPriviteRoute><PriviteRoute><AddBlog></AddBlog></PriviteRoute></AdminPriviteRoute>
-            }
+            },
+          
+            //     path:"/*",
+            //     element:<ErrorPage></ErrorPage>
+            // }
             //volantir
             
         ]

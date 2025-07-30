@@ -71,7 +71,7 @@ const AdminContentManagement = () => {
                                 <option value="published">Publish</option>
                                 </select>
                             </div>
-                     <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-6'>
 
                         {
                             filterBlog?.map((blog)=> <BlogCard key={blog?._id} blog={blog} ></BlogCard>)
@@ -86,7 +86,7 @@ const AdminContentManagement = () => {
                         pages.map(page=> <button onClick={()=>setCurrentPage(page)}
                          className={`btn mr-2 ${currentPage===page?"bg-amber-500 text-white":""} `} key={page}>{page}</button>)
                     }
-                    <button onClick={handleNextPage} className='btn mr-2'>Next</button>
+                    <button onClick={handleNextPage} className='btn mr-2' >Next</button>
                     
                     <select value={itemsPerPage} 
                     onChange={e=>{

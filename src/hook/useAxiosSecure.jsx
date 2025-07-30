@@ -26,7 +26,7 @@ const useAxiousSecure = () => {
               logOut()
               .then(()=>{
               toast.error("Sign Out User for 401 Status Code!")
-               navigate("/signin")
+               navigate("/login")
 
           })
         }

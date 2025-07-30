@@ -35,7 +35,7 @@ const DonationDitails = () => {
                  <DonnateModal  id={id} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} ></DonnateModal>
                </div>
                {/* donation info */}
-               <div className='md:flex md:justify-around pt-5 space-y-4'>
+               <div className='lg:flex lg:justify-around pt-5 space-y-4'>
                 {/* left */}
                 <div className='space-y-4'>
                     <p className='space-x-2 flex   '>

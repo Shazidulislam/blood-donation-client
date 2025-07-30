@@ -32,7 +32,7 @@ const Featured = () => {
                 </figure>
             </div>
             {/* join section */}
-            <div className='px-20 py-10 md:flex gap-6 col-span-1 md:col-span-2 bg-[#D25D5D] rounded text-white'>
+            <div className='px-20 hidden lg:block py-10 md:flex gap-6 col-span-1 md:col-span-2 bg-[#D25D5D] rounded text-white'>
                 <div>
                     <h1 className='text-3xl md:text-4xl font-semibold font-seconbary'>Join To Get Our Newsletter</h1>
                     <p className='text-gray-100'>Join Us & Stay Updated with Life-Saving Blood News!</p>

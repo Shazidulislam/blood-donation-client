@@ -117,7 +117,7 @@ if(selectedDistrictId){
                     searchResult.length === 0?"":
                     <>
                       <h2 className='text-center text-2xl md:text-4xl text-[#D25D5D]' >Matching Donors</h2>
-                      <div className='grid grid-cols-1 md:grid-cols-3 gap-5 py-6'>
+                      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 py-6'>
                             {
                                 searchResult?.map(user=><SearchCard user={user} key={user?._id} ></SearchCard>)
                             }
