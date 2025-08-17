@@ -14,16 +14,16 @@ const Banner = () => {
         interval={2000}
       >
         <div>
-          <img src={banner1} />
-          <p className="legend">Legend 1</p>
+          <img src={banner1} className="h-[650px]" />
+          {/* <p className="legend">Legend 1</p> */}
         </div>
         <div>
-          <img src={banner2} />
-          <p className="legend">Legend 2</p>
+          <img src={banner2} className="h-[650px]"  />
+          {/* <p className="legend">Legend 2</p> */}
         </div>
         <div>
-          <img src={banner3} />
-          <p className="legend">Legend 3</p>
+          <img src={banner3} className="h-[650px]"  />
+          {/* <p className="legend">Legend 3</p> */}
         </div>
       </Carousel>
     </div>

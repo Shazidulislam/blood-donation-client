@@ -30,7 +30,7 @@ const DonationDitails = () => {
                <p className='text-lg font-medium text-gray-400 pt-3'>View the full details of your blood donation request</p>
                <div className='divider'></div>
                <div className='flex justify-between mt-10'>
-                 <h2 className='text-xl md:text-2xl font-bold text-[#D25D5D]'>Donation Information</h2>
+                 <h2 className='text-xl md:text-2xl font-bold text-[#D25D5D]'>Request Information</h2>
                  <button   onClick={() => setIsModalOpen(true)} className='px-12 rounded-xs py-3 bg-[#D25D5D] cursor-pointer text-white '>Donate</button>
                  <DonnateModal  id={id} isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} ></DonnateModal>
                </div>
@@ -70,9 +70,9 @@ const DonationDitails = () => {
                        <span  className='text-gray-700 font-semibold text-lg'>  Donation Time :</span>
                         <span className='text-gray-500 '>{donation_time}</span>
                     </p>
-                    <p className='space-x-2 flex  '>
+                    <p className='space-x-2   '>
                        <span  className='text-gray-700 font-semibold text-lg'> Requester Information :</span>
-                        <span className='text-gray-500 '>{requester_name}</span>
+                        <p className='text-gray-500 '>{requester_name}</p>
                         <p  className='text-gray-500 '>{requester_email}</p>
                     </p>
                    

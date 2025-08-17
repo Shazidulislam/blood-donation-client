@@ -26,11 +26,11 @@ const RegisterForm = ({ handleRegister, error, setSelectDistrict }) => {
   }, [selectedDistrictId, upazilas]);
 
   return (
-    <div>
+    <div className="pl-4 pb-4 md:pb-0 md:pl-0">
       <div className="md:py-5  color-theme">
         <div className="w-full  md:w-xl   sm:p-8  mx-auto text-gray-800">
           <form onSubmit={handleRegister} className="space-y-3 text-white">
-            <fieldset className="fieldset w-xs md:w-lg  font-medium">
+            <fieldset className="fieldset w-xs lg:w-lg  font-medium">
               <label htmlFor="name" className="block text-sm">
                 Name
               </label>
@@ -41,7 +41,7 @@ const RegisterForm = ({ handleRegister, error, setSelectDistrict }) => {
                 className="w-full p-3  outline-none font-semibold border-b-2 border-white hover:border-[#D25D5D] "
               />
             </fieldset>
-            <fieldset className="fieldset w-xs md:w-lg  font-medium">
+            <fieldset className="fieldset w-xs lg:w-lg  font-medium">
               <label htmlFor="email" className="block text-sm">
                 Email
               </label>
@@ -52,7 +52,7 @@ const RegisterForm = ({ handleRegister, error, setSelectDistrict }) => {
                 className="w-full p-3  outline-none border-b-2 border-white hover:border-[#D25D5D] "
               />
             </fieldset>
-            <fieldset className="fieldset w-xs  md:w-lg  font-medium">
+            <fieldset className="fieldset w-xs  lg:w-lg  font-medium">
               <label className="block text-sm font-medium">Image</label>
               <input
                 type="file"
@@ -62,7 +62,7 @@ const RegisterForm = ({ handleRegister, error, setSelectDistrict }) => {
                 className="w-full p-3  outline-none border-b-2 border-white hover:border-[#D25D5D] "
               />
             </fieldset>
-            <fieldset className="fieldset  w-xs md:w-lg">
+            <fieldset className="fieldset  w-xs lg:w-lg">
               <legend className="">Blood group</legend>
               <select
                 name="blood_group"
@@ -149,7 +149,7 @@ const RegisterForm = ({ handleRegister, error, setSelectDistrict }) => {
             </fieldset>
             {/* selected upazila end */}
             {/* password */}
-            <fieldset className="fieldset relative w-xs md:w-lg  font-medium">
+            <fieldset className="fieldset relative w-xs lg:w-lg  font-medium">
               <label className="block text-sm">Password</label>
               <input
                 type={isOpen?"text":"password"}
@@ -164,7 +164,7 @@ const RegisterForm = ({ handleRegister, error, setSelectDistrict }) => {
               </span>
             </fieldset>
             {/* Confirm Password */}
-            <fieldset className="relative fieldset w-xs md:w-lg  font-medium">
+            <fieldset className="relative fieldset w-xs lg:w-lg  font-medium">
               <label className="block text-sm">Confirm Password</label>
               <input
                 type={isOpen1?"text":"password"}
@@ -178,7 +178,7 @@ const RegisterForm = ({ handleRegister, error, setSelectDistrict }) => {
                 }
               </span>
             </fieldset>
-            <fieldset className="fieldset w-xs md:w-lg  ">
+            <fieldset className="fieldset w-xs lg:w-lg  ">
               <button 
                 type="submit"
                 className="w-full px-8 py-3 font-semibold  bg-[#D25D5D] cursor-pointer text-gray-100"

@@ -18,7 +18,6 @@ const Featured = () => {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2">
           <p className="flex justify-start font-medium  text-gray-600 items-center gap-2">
-            
             <span className="text-[#D25D5D]">
               <MdOutlineCheck />
             </span>
@@ -70,24 +69,26 @@ const Featured = () => {
         </figure>
       </div>
       {/* join section */}
-      <div className="px-20 hidden lg:block py-10 md:flex gap-6 col-span-1 md:col-span-2 bg-[#D25D5D] rounded text-white">
-        <div>
-          <h1 className="text-3xl md:text-4xl font-semibold font-seconbary">
-            Join To Get Our Newsletter
-          </h1>
-          <p className="text-gray-100">
-            Join Us & Stay Updated with Life-Saving Blood News!
-          </p>
-        </div>
-        <div className="md:flex gap-6 md:pl-36">
-          <fieldset>
-            <input
-              type="text"
-              className="px-3 py-5 w-full text-black outline-none rounded-xs bg-white "
-              placeholder="Your Email"
-            />
-          </fieldset>
-          <button className="px-12 py-5 bg-black rounded">Subscribe</button>
+      <div className="px-20 hidden lg:block py-10  gap-6  bg-[#D25D5D] rounded text-white  col-span-2">
+        <div className="flex justify-between">
+          <div>
+            <h1 className="text-3xl md:text-4xl font-semibold font-seconbary">
+              Join To Get Our Newsletter
+            </h1>
+            <p className="text-gray-100">
+              Join Us & Stay Updated with Life-Saving Blood News!
+            </p>
+          </div>
+          <div className="flex ">
+            <fieldset>
+              <input
+                type="text"
+                className="px-3 py-5 w-full text-black outline-none  bg-white "
+                placeholder="Your Email"
+              />
+            </fieldset>
+            <button className="px-12 py-5 bg-black ">Subscribe</button>
+          </div>
         </div>
       </div>
     </div>

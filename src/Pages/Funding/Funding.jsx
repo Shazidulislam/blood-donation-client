@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import LoadingSpner from '../../Component/LoadingSpner';
 import useAxiousSecure from '../../hook/useAxiosSecure';
 import FunDingTable from '../../Component/Sheard/DashbordMenu/Table/FunDingTable';
+import Sidespace from '../../Component/Sidespace/Sidespace';
 
 
 
@@ -27,6 +28,7 @@ const Funding = () => {
      //console.log(data)
     if(isLoading) return <LoadingSpner/>
     return (
+        <Sidespace>
         <div className='py-10' >
             <div className='grid grid-cols-12' >
                <div className='col-span-10' >
@@ -50,6 +52,7 @@ const Funding = () => {
            <PurchaseModal closeModal={closeModal} isOpen={isOpen} refetch={refetch} ></PurchaseModal> 
         </div>
         </div>
+        </Sidespace>
     );
 };
 

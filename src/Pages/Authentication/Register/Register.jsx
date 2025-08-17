@@ -143,7 +143,7 @@ const Register = () => {
         </div>
         {/* from */}
         <div className="bg-white/20 col-span-2 shadow-2xl">
-          <div className="flex justify-end pt-4 pr-4">
+          <div className="flex justify-center lg:justify-end pt-4 pr-4">
             <Link
               to={"/login"}
               className="px-6 py-3 bg-[#D25D5D] cursor-pointer rounded border-2 shadow border-white"

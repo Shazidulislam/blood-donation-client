@@ -1,39 +1,57 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { useState } from "react";
+import { FiEye } from "react-icons/fi";
+import { LuEyeOff } from "react-icons/lu";
+import { Link } from "react-router";
 
-const LoginForm = ({handleSubmit}) => {
-    return (
-         <div className='md:py-10  color-theme'>
-          <div className="w-full max-w-lg  p-4 rounded shadow sm:p-8 bg-gray-50 mx-auto text-gray-800">
-                <h2 className="mb-3 text-3xl font-semibold text-center">Sign your account</h2>
-                <p className="text-sm text-center font-medium text-gray-600">Don't have account?
-                   <Link to={"/register"} className='text-blue-500 hover:underline'>SignUp</Link>
-                </p>
-             
-                <div className="flex items-center w-full my-4">
-                    <hr  className="w-full text-gray-600" />
-                  
-                    <hr  className="w-full text-gray-600" />
-                </div>
-                <form onSubmit={handleSubmit} className="space-y-8">
-                    <div className="space-y-4">
-                        
-                         <div className="space-y-2">
-                            <label htmlFor="name" className="block text-sm text-gray-500">Email address</label>
-                            <input type="email" name="email"  placeholder="your@gmail.com" className="w-full px-3 py-2 border-b-2  border-gray-300 outline-none bg-white text-gray-800 focus:border-violet-600" />
-                        </div>
-                        <div className="space-y-2">
-                            <div className="flex justify-between">
-                                <label htmlFor="password" className="text-sm text-gray-500">Password</label>
-                            </div>
-                            <input type="password" name="password"  placeholder="*****" className="w-full px-3 py-2 border-b-2 border-gray-300 outline-none bg-white text-gray-800 focus:border-violet-600" />
-                        </div>
-                    </div>
-                    <button type="submit" className="w-full px-8 py-3 font-semibold rounded bg-[#03464D] cursor-pointer text-gray-100">Sign In</button>
-                </form>
+const LoginForm = ({ handleSubmit }) => {
+     const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="text-white">
+      <div className="w-full mx-auto ">
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <fieldset className="fieldset w-xs lg:w-lg  font-medium">
+                <label htmlFor="name" className="">
+                  Email address
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="your@gmail.com"
+                  className="w-full p-3  outline-none font-semibold border-b-2 border-white hover:border-[#D25D5D]"
+                />
+              </fieldset>
             </div>
-        </div>
-    );
+            <div className="space-y-2">
+              <fieldset className=" relative fieldset w-xs lg:w-lg  font-medium">
+                <label htmlFor="password" className="">
+                  Password
+                </label>
+                <input
+                  type={isOpen?"text":"password"}
+                  name="password"
+                  placeholder="*****"
+                  className="w-full p-3  outline-none font-semibold border-b-2 border-white hover:border-[#D25D5D]"
+                />
+                  <span className="absolute  right-4 top-10" >
+                                {
+                                   isOpen? <span className="" onClick={()=>setIsOpen(false)}> <FiEye size={20}/></span> :<span onClick={()=>setIsOpen(true)}><LuEyeOff size={20}/></span> 
+                                }
+                              </span>
+              </fieldset>
+            </div>
+          </div>
+          <button
+            type="submit"
+            className=" w-xs lg:w-lg px-8 py-3 font-semibold rounded bg-[#D25D5D] cursor-pointer text-gray-100"
+          >
+            Sign In
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default LoginForm;

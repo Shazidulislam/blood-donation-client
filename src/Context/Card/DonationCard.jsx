@@ -18,8 +18,8 @@ const DonationCard = ({donation}) => {
              <p><span  className='font-semibold text-gray-600' >Donation Status : </span><span className='text-gray-400' >{donation_status}</span></p>
 
             </div>
-             <div className='flex justify-end '>
-                <Link  to={`/dashboard/diatils/${_id}`}><button className='text-white rounded-xs bg-[#D25D5D] cursor-pointer px-6 py-2' >View</button></Link>
+             <div className='flex pt-10 w-full'>
+                <Link  to={`/dashboard/diatils/${_id}`}><button className='text-white rounded-xs bg-[#D25D5D] cursor-pointer px-6 py-2 ' >View</button></Link>
              </div>
         </div>
     );
