@@ -5,9 +5,9 @@ import Navbar from '../Component/Navbar';
 
 const RootLayout = () => {
     return (
-        <div className=' bg-[#D25D5D10] pt-2 px-10 mx-auto'>
+        <div className=' bg-[#D25D5D10]   mx-auto'>
             <Navbar></Navbar>
-            <div className='md:max-w-7xl mx-auto'>
+            <div >
                   <Outlet></Outlet>
             </div>
             <Footer></Footer>

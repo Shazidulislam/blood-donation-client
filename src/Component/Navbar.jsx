@@ -39,7 +39,7 @@ const Navbar = () => {
     </>
     if(loading) return <LoadingSpner/>
     return (
-                <div className="navbar bg-[#D25D5D40] shadow-sm rounded">
+                <div className="navbar bg-[#D25D5D90] px-10 sticky top-0 z-10 mx-auto shadow-sm rounded">
                     {/* small divice */}
                     <div className="navbar-start">
                         
