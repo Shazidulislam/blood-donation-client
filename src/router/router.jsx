@@ -25,114 +25,175 @@ import ErrorPage from "../Pages/Error/ErrorPage";
 import Funding from "../Pages/Funding/Funding";
 
 const router = createBrowserRouter([
-    {
-        path:"/",
-        element:<RootLayout></RootLayout>,
-        // errorElement:<ErrorPage></ErrorPage>,
-        children:[
-            {
-                index:true,
-                element:<Home></Home>
-            },
-            {
-                path:"/search",
-                element:<SearchPage></SearchPage>
-            },
-            {
-                path:"/all-blood-donation-request",
-                element:<BloodDonationRequest></BloodDonationRequest>
-            },
-            {
-                path:"/published-blog",
-                element:<Blog></Blog>
-            },
-            {
-                path:"/blog-deatils/:id",
-                element:<PriviteRoute><BlogDeatils></BlogDeatils></PriviteRoute>
-            },
-            {
-                path:"/*",
-                element:<ErrorPage></ErrorPage>
-            },
-            {
-                path:"/funding",
-                element:<PriviteRoute><Funding></Funding></PriviteRoute>
-            }
-        ]
-    },
-    {
-        path:"/login",
-        Component:Login,
-    },
-    {
-        path:"/register",
-        Component:Register,
-       
-    },
-    {
-        path:"/dashboard",
-        element:<PriviteRoute><DashboardLayout></DashboardLayout></PriviteRoute>,
-        children:[
-            {
-              index:true,
-              hydrateFallbackElement:<LoadingSpner></LoadingSpner>,
-              loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-total-user`),
-              element:<PriviteRoute><DashboardHome></DashboardHome></PriviteRoute>
-            },
-            {
-                path:"/dashboard/my-donation",
-                element:<PriviteRoute><MydonationRequest></MydonationRequest></PriviteRoute>
-            },
-            {
-              path:"/dashboard/create-donation-request",
-              element:<PriviteRoute><CreateDonationRequext></CreateDonationRequext></PriviteRoute>
-            },
-            {
-                path:"/dashboard/profile",
-                element:<PriviteRoute><UserProfile></UserProfile></PriviteRoute>
+  {
+    path: "/",
+    element: <RootLayout></RootLayout>,
+    // errorElement:<ErrorPage></ErrorPage>,
+    children: [
+      {
+        index: true,
+        element: <Home></Home>,
+      },
+      {
+        path: "/search",
+        element: <SearchPage></SearchPage>,
+      },
+      {
+        path: "/all-blood-donation-request",
+        element: <BloodDonationRequest></BloodDonationRequest>,
+      },
+      {
+        path: "/published-blog",
+        element: <Blog></Blog>,
+      },
+      {
+        path: "/blog-deatils/:id",
+        element: (
+          <PriviteRoute>
+            <BlogDeatils></BlogDeatils>
+          </PriviteRoute>
+        ),
+      },
 
-            },
-            {
-                path:"/dashboard/edit-donation/:id",
-                element:<PriviteRoute><UpdateDonation></UpdateDonation></PriviteRoute>
-            },
-            {
-                path:"/dashboard/diatils/:id",
-                element:<PriviteRoute><DonationDitails></DonationDitails></PriviteRoute>
-            },
-            // admin && volunteer
-            {
-                path:"/dashboard/all-donner-info",
-                hydrateFallbackElement:<LoadingSpner></LoadingSpner>,
-                loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-total-user`),
-                element:<AdminPriviteRoute><PriviteRoute><Alluser></Alluser></PriviteRoute></AdminPriviteRoute>
-            },
-            {
-                path:"/dashboard/all-blood-donation-request",
-                hydrateFallbackElement:<LoadingSpner/>,
-                loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-all-donation`),
-                element:<AdminPriviteRoute><PriviteRoute><AllBloodDonationRequest></AllBloodDonationRequest></PriviteRoute></AdminPriviteRoute>
-                // element:<PriviteRoute><AllBloodDonationRequest></AllBloodDonationRequest></PriviteRoute>
-            },
-            {
-                path:"/dashboard/content-management",
-                hydrateFallbackElement:<LoadingSpner/>,
-                 loader:()=>fetch(`${import.meta.env.VITE_SERVER_KEY}/count-all-blog`),
-                element:<AdminPriviteRoute><PriviteRoute><AdminContentManagement></AdminContentManagement></PriviteRoute></AdminPriviteRoute>
-            },
-            {
-                path:"/dashboard/content-management/add-blog",
-                element:<AdminPriviteRoute><PriviteRoute><AddBlog></AddBlog></PriviteRoute></AdminPriviteRoute>
-            },
-          
-            //     path:"/*",
-            //     element:<ErrorPage></ErrorPage>
-            // }
-            //volantir
-            
-        ]
-    }
+      {
+        path: "/funding",
+        element: (
+          <PriviteRoute>
+            <Funding></Funding>
+          </PriviteRoute>
+        ),
+      },
+    ],
+  },
+  {
+    path: "/login",
+    Component: Login,
+  },
+  {
+    path: "/register",
+    Component: Register,
+  },
+  {
+    path: "/*",
+    element: <ErrorPage></ErrorPage>,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PriviteRoute>
+        <DashboardLayout></DashboardLayout>
+      </PriviteRoute>
+    ),
+    children: [
+      {
+        index: true,
+        hydrateFallbackElement: <LoadingSpner></LoadingSpner>,
+        loader: () =>
+          fetch(`${import.meta.env.VITE_SERVER_KEY}/count-total-user`),
+        element: (
+          <PriviteRoute>
+            <DashboardHome></DashboardHome>
+          </PriviteRoute>
+        ),
+      },
+      {
+        path: "/dashboard/my-donation",
+        element: (
+          <PriviteRoute>
+            <MydonationRequest></MydonationRequest>
+          </PriviteRoute>
+        ),
+      },
+      {
+        path: "/dashboard/create-donation-request",
+        element: (
+          <PriviteRoute>
+            <CreateDonationRequext></CreateDonationRequext>
+          </PriviteRoute>
+        ),
+      },
+      {
+        path: "/dashboard/profile",
+        element: (
+          <PriviteRoute>
+            <UserProfile></UserProfile>
+          </PriviteRoute>
+        ),
+      },
+      {
+        path: "/dashboard/edit-donation/:id",
+        element: (
+          <PriviteRoute>
+            <UpdateDonation></UpdateDonation>
+          </PriviteRoute>
+        ),
+      },
+      {
+        path: "/dashboard/diatils/:id",
+        element: (
+          <PriviteRoute>
+            <DonationDitails></DonationDitails>
+          </PriviteRoute>
+        ),
+      },
+      // admin && volunteer
+      {
+        path: "/dashboard/all-donner-info",
+        hydrateFallbackElement: <LoadingSpner></LoadingSpner>,
+        loader: () =>
+          fetch(`${import.meta.env.VITE_SERVER_KEY}/count-total-user`),
+        element: (
+          <AdminPriviteRoute>
+            <PriviteRoute>
+              <Alluser></Alluser>
+            </PriviteRoute>
+          </AdminPriviteRoute>
+        ),
+      },
+      {
+        path: "/dashboard/all-blood-donation-request",
+        hydrateFallbackElement: <LoadingSpner />,
+        loader: () =>
+          fetch(`${import.meta.env.VITE_SERVER_KEY}/count-all-donation`),
+        element: (
+          <AdminPriviteRoute>
+            <PriviteRoute>
+              <AllBloodDonationRequest></AllBloodDonationRequest>
+            </PriviteRoute>
+          </AdminPriviteRoute>
+        ),
+        // element:<PriviteRoute><AllBloodDonationRequest></AllBloodDonationRequest></PriviteRoute>
+      },
+      {
+        path: "/dashboard/content-management",
+        hydrateFallbackElement: <LoadingSpner />,
+        loader: () =>
+          fetch(`${import.meta.env.VITE_SERVER_KEY}/count-all-blog`),
+        element: (
+          <AdminPriviteRoute>
+            <PriviteRoute>
+              <AdminContentManagement></AdminContentManagement>
+            </PriviteRoute>
+          </AdminPriviteRoute>
+        ),
+      },
+      {
+        path: "/dashboard/content-management/add-blog",
+        element: (
+          <AdminPriviteRoute>
+            <PriviteRoute>
+              <AddBlog></AddBlog>
+            </PriviteRoute>
+          </AdminPriviteRoute>
+        ),
+      },
 
-])
+      //     path:"/*",
+      //     element:<ErrorPage></ErrorPage>
+      // }
+      //volantir
+    ],
+  },
+]);
 
 export default router;

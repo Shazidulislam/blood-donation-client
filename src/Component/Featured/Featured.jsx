@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import highangleimg from "../../assets/banner/donateBlood.jpg";
 import { MdOutlineCheck } from "react-icons/md";
 
@@ -57,9 +58,9 @@ const Featured = () => {
           </p>
         </div>
         <div className="pt-10">
-          <button className="px-12 transition-colors cursor-pointer rounded duration-300  py-5 shadow-2xl shadow-[#B9375D50] bg-[#D25D5D] hover:bg-[#B9375D] text-white">
-            About Us
-          </button>
+          <Link to={"/funding"} className="px-12 transition-colors cursor-pointer rounded duration-300  py-5 shadow-2xl shadow-[#B9375D50] bg-[#D25D5D] hover:bg-[#B9375D] text-white">
+           Donate Now
+          </Link>
         </div>
       </div>
       {/* second */}
@@ -73,21 +74,21 @@ const Featured = () => {
         <div className="flex justify-between">
           <div>
             <h1 className="text-3xl md:text-4xl font-semibold font-seconbary">
-              Join To Get Our Newsletter
+             Ready to Save a Life?
             </h1>
             <p className="text-gray-100">
-              Join Us & Stay Updated with Life-Saving Blood News!
+              Join our blood donation community and help patients in need. Every drop counts!
             </p>
           </div>
           <div className="flex ">
             <fieldset>
               <input
                 type="text"
-                className="px-3 py-5 w-full text-black outline-none  bg-white "
+                className="px-3 py-5 w-full  text-black outline-none  bg-white "
                 placeholder="Your Email"
               />
             </fieldset>
-            <button className="px-12 py-5 bg-black ">Subscribe</button>
+            <Link to={"/funding"} className="px-12 py-5 bg-black ">Donate</Link>
           </div>
         </div>
       </div>

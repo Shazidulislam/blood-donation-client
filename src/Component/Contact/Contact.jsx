@@ -12,7 +12,7 @@ const Contact = () => {
     AOS.refresh(); // <- Important if components load dynamically
   }, []);
   return (
-    <div className=" grid grid-cols-1 gap-6 md:grid-cols-2 py-20">
+    <div className=" grid grid-cols-1 gap-6 md:grid-cols-2 py-10">
       {/* form */}
       <div data-aos="fade-right">
         <p className="font-semibold text-[#D25D5D]">Contact Us</p>
